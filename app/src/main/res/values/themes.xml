@@ -3,7 +3,9 @@
     <style name="Base.Theme.DuAn1_Nhom9" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">@color/bar</item>
     </style>
 
     <style name="Theme.DuAn1_Nhom9" parent="Base.Theme.DuAn1_Nhom9" />
+
 </resources>
