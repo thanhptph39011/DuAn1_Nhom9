@@ -62,7 +62,6 @@ public class Login_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 edtUserName.setText("");
                 edtPassWord.setText("");
-
             }
         });
     }

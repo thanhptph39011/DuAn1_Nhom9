@@ -29,6 +29,7 @@ import com.example.duan1_nhom9.Fragments.GiayFragment;
 import com.example.duan1_nhom9.Fragments.HoaDonFragment;
 import com.example.duan1_nhom9.Fragments.KhachHangFragment;
 import com.example.duan1_nhom9.Fragments.LoaiGiayFragment;
+import com.example.duan1_nhom9.Fragments.NhanVienFragment;
 import com.example.duan1_nhom9.Fragments.TopFragment;
 import com.example.duan1_nhom9.Model.NhanVien;
 import com.example.duan1_nhom9.Model.Photo;
@@ -80,6 +81,7 @@ public class Home_Activity extends AppCompatActivity {
             NhanVien nv = nhanVienDao.getID(user);
             String userName = nv.getHoTen();
             tvuser.setText("Wellcome: "+userName);
+            nav.getMenu().findItem(R.id.DoiMk).setVisible(true);
             Toast.makeText(this, "Wellcome thủ thư", Toast.LENGTH_SHORT).show();
         }
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -106,7 +108,11 @@ public class Home_Activity extends AppCompatActivity {
                 } else if (item.getItemId() == R.id.DoiMk) {
                     ChangePassFragment changePassFragment = new ChangePassFragment();
                     replaceFrg(changePassFragment);
-                } else {
+                } else if (item.getItemId()==R.id.QuanLyNhanVien) {
+                    NhanVienFragment nhanVienFragment = new NhanVienFragment();
+                    replaceFrg(nhanVienFragment);
+
+            } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(Home_Activity.this);
                     builder.setTitle("Cảnh báo");
                     builder.setIcon(R.drawable.baseline_warning_24);
