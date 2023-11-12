@@ -82,7 +82,7 @@ public class Home_Activity extends AppCompatActivity {
             String userName = nv.getHoTen();
             tvuser.setText("Wellcome: "+userName);
             nav.getMenu().findItem(R.id.DoiMk).setVisible(true);
-            Toast.makeText(this, "Wellcome thủ thư", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Wellcome nhân viên", Toast.LENGTH_SHORT).show();
         }
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

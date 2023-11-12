@@ -77,7 +77,6 @@ public class TopFragment extends Fragment {
         });
         return v;
     }
-
     private List<Photo> getListPhoto() {
         List<Photo> list = new ArrayList<>();
         list.add(new Photo(R.drawable.anh1));
