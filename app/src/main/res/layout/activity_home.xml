@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#2DA2A6"
-                android:minHeight="?attr/actionBarSize"/>
+                android:minHeight="?attr/actionBarSize" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <FrameLayout
@@ -37,7 +37,9 @@
             android:id="@+id/botomMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F3F7F8"
+            android:background="#2DA2A6"
+            app:itemIconTint="@color/custom_color_botom"
+            app:itemTextColor="@color/custom_color_botom"
             app:menu="@menu/bottom_menu" />
     </LinearLayout>
 

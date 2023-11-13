@@ -56,7 +56,6 @@ public class TopFragment extends Fragment {
         adapter = new ImageAdapter(getActivity(), getListPhoto());
         viewPager.setAdapter(adapter);
         circleIndicator.setViewPager(viewPager);
-     //   adapter.registerDataSetObserver(circleIndicator.getDataSetObserver());
         handler.postDelayed(runnable, 2000);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
