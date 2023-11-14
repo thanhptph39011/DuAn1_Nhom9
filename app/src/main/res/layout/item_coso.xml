@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/boder"
+    android:orientation="horizontal">
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="50dp"
+        android:scaleType="centerCrop"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/coso"/>
+    <LinearLayout
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên cơ sở: " />
+
+            <TextView
+                android:id="@+id/tvMaCs_itemCoSo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginLeft="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Địa chỉ: " />
+
+            <TextView
+                android:id="@+id/tvDiaChi_itemCoSo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+      <ImageView
+          android:id="@+id/btnDelete_CoSo"
+          android:layout_width="28dp"
+          android:layout_height="30dp"
+          android:src="@drawable/delete"
+        />
+      <ImageView
+          android:id="@+id/btnUpdate_CoSo"
+          android:layout_width="28dp"
+          android:layout_height="30dp"
+          android:src="@drawable/upadte"
+         />
+  </LinearLayout>
+</LinearLayout>
