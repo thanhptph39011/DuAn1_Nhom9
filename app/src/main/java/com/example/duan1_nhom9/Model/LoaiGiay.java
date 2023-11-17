@@ -37,4 +37,9 @@ public class LoaiGiay {
     public void setLoaiHang(String loaiHang) {
         this.loaiHang = loaiHang;
     }
+
+    public LoaiGiay(String tenLoai, String loaiHang) {
+        this.tenLoai = tenLoai;
+        this.loaiHang = loaiHang;
+    }
 }
