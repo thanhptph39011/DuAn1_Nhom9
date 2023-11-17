@@ -5,11 +5,17 @@ public class KhachHang {
     private String tenKh;
     private int sdt;
 
-    public KhachHang() {
-    }
+  public KhachHang(){
+
+  }
 
     public KhachHang(int maKh, String tenKh, int sdt) {
         this.maKh = maKh;
+        this.tenKh = tenKh;
+        this.sdt = sdt;
+    }
+
+    public KhachHang(String tenKh, int sdt) {
         this.tenKh = tenKh;
         this.sdt = sdt;
     }
