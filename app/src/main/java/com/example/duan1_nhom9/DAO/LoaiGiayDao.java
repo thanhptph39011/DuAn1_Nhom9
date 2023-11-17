@@ -27,7 +27,7 @@ public class LoaiGiayDao {
     public boolean insertLoaiGiay(LoaiGiay loaiGiay) {
         ContentValues values = new ContentValues();
         values.put("tenLoai", loaiGiay.getTenLoai());
-        values.put("loaiHang", loaiGiay.getLoaiHang());
+        values.put("loaiHang",loaiGiay.getLoaiHang());
         long row = db.insert("LoaiGiay", null, values);
         return (row > 0);
     }
@@ -35,7 +35,7 @@ public class LoaiGiayDao {
     public boolean updateLoaiGiay(LoaiGiay loaiGiay) {
         ContentValues values = new ContentValues();
         values.put("tenLoai", loaiGiay.getTenLoai());
-        values.put("loaiHang", loaiGiay.getLoaiHang());
+        values.put("loaiHang",loaiGiay.getLoaiHang());
         long row = db.update("LoaiGiay", values, "maLoai=?", new String[]{String.valueOf(loaiGiay.getMaLoai())});
         return (row > 0);
     }
@@ -50,7 +50,7 @@ public class LoaiGiayDao {
         Cursor cursor = db.rawQuery(sql, selectionArgs);
         while (cursor.moveToNext()) {
             LoaiGiay loaiGiay = new LoaiGiay();
-            loaiGiay.setMaLoai(cursor.getInt(0));
+            loaiGiay.setMaLoai(Integer.parseInt(cursor.getString(0)));
             loaiGiay.setTenLoai(cursor.getString(1));
             loaiGiay.setLoaiHang(cursor.getString(2));
             list.add(loaiGiay);
