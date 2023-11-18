@@ -90,8 +90,8 @@ public class KhachHangAdapter extends RecyclerView.Adapter<KhachHangAdapter.view
                 EditText edtMakh = view.findViewById(R.id.edtMaKH_itemUpKhachHang);
                 EditText edtTenkh = view.findViewById(R.id.edtTenKH_itemUpKhachHang);
                 EditText edtSdt = view.findViewById(R.id.edtSdt_itemUpKhachHang);
-                Button btnSave = view.findViewById(R.id.btnSave_itemUpKhachHang);
-                Button btnHuy = view.findViewById(R.id.btnHuy_itemUpKhachHang);
+                ImageView btnSave = view.findViewById(R.id.btnSave_itemUpKhachHang);
+                ImageView btnHuy = view.findViewById(R.id.btnHuy_itemUpKhachHang);
                 //gán dl
                 edtMakh.setText(String.valueOf(kh.getMaKh()));
                 edtTenkh.setText(kh.getTenKh());

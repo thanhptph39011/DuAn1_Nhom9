@@ -10,7 +10,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String Db_name = "AirStore";
 
     public DbHelper(@Nullable Context context) {
-        super(context, Db_name, null, 1);
+        super(context, Db_name, null, 2);
     }
 
     @Override
@@ -19,7 +19,10 @@ public class DbHelper extends SQLiteOpenHelper {
         String createTableCoSo =
                 "create table CoSo(maCoSo text primary key ,diaChi text not null)";
         sqLiteDatabase.execSQL(createTableCoSo);
-
+//Bảng phụ kiện
+        String createTablePhuKien =
+                "create table PhuKien(maPk integer primary key autoincrement, tenPk text not null, giaMua integer not null)";
+        sqLiteDatabase.execSQL(createTablePhuKien);
          //bảng loại giày
         String createTableLoaiGiay =
                 "create table LoaiGiay(maLoai integer primary key autoincrement, tenLoai text, loaiHang text)";
@@ -34,7 +37,7 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(createTableGiay);
         //Bảng nhân viên
         String createTableNhanVien =
-                "create table NhanVien(maNv text primary key , maCoSo text references CoSo(maCoSo),hoTen text not null, matKhau text not null, cccd integer not null, sdt integer not null)";
+                "create table NhanVien(maNv text primary key,hoTen text not null, matKhau text not null , cccd text not null, sdt integer not null, maCoSo text references CoSo(maCoSo))";
         sqLiteDatabase.execSQL(createTableNhanVien);
         //Bảng hoá đơn
         String createTableHoaDon =
@@ -45,6 +48,8 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         String dropTableCoSo = "drop table if exists CoSo";
         sqLiteDatabase.execSQL(dropTableCoSo);
+        String dropTablePhuKien = "drop table if exists PhuKien";
+        sqLiteDatabase.execSQL(dropTablePhuKien);
         String dropTableLoaiGiay = "drop table if exists LoaiGiay";
         sqLiteDatabase.execSQL(dropTableLoaiGiay);
         String dropTableKhachHang = "drop table if exists KhachHang";

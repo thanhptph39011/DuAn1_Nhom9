@@ -54,4 +54,14 @@ public class CoSoDao {
         }
         return list;
     }
+    public CoSo getID(String id){
+        String sql ="select * from CoSo where maCoSo=?";
+        List<CoSo> list = getData(sql,id);
+        if(!list.isEmpty()){
+            return list.get(0);
+        }else{
+            return null;
+        }
+
+    }
 }

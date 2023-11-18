@@ -5,7 +5,7 @@ public class NhanVien {
     private String maCoSo;
     private String hoTen;
     private String matKhau;
-    private int cccd;
+    private String cccd;
     private int sdt;
 
     public NhanVien() {
@@ -43,11 +43,11 @@ public class NhanVien {
         this.matKhau = matKhau;
     }
 
-    public int getCccd() {
+    public String getCccd() {
         return cccd;
     }
 
-    public void setCccd(int cccd) {
+    public void setCccd(String cccd) {
         this.cccd = cccd;
     }
 
@@ -59,7 +59,7 @@ public class NhanVien {
         this.sdt = sdt;
     }
 
-    public NhanVien(String maNv, String maCoSo, String hoTen, String matKhau, int cccd, int sdt) {
+    public NhanVien(String maNv, String maCoSo, String hoTen, String matKhau, String cccd, int sdt) {
         this.maNv = maNv;
         this.maCoSo = maCoSo;
         this.hoTen = hoTen;
@@ -68,7 +68,7 @@ public class NhanVien {
         this.sdt = sdt;
     }
 
-    public NhanVien(String maNv, String maCoSo, String hoTen, int cccd, int sdt) {
+    public NhanVien(String maNv, String maCoSo, String hoTen, String cccd, int sdt) {
         this.maNv = maNv;
         this.maCoSo = maCoSo;
         this.hoTen = hoTen;

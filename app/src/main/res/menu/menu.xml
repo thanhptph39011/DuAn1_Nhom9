@@ -17,25 +17,15 @@
         android:icon="@drawable/baseline_groups_24"
         android:title="Quản lý khách hàng" />
     <item
+        android:id="@+id/QuanLyPhuKien"
+        android:icon="@drawable/phukien"
+        android:title="Quản lý phụ kiện" />
+    <item
         android:id="@+id/QuanLyNhanVien"
         android:icon="@drawable/baseline_group_24"
         android:title="Quản lý nhân viên"
         android:visible="false" />
 
-    <group android:checkableBehavior="single">
-        <item android:title="Thống kê">
-            <menu>
-                <item
-                    android:id="@+id/topgiayMuaNhieuNhat"
-                    android:icon="@drawable/baseline_vertical_align_top_24"
-                    android:title="Top giày được mua nhiều nhất " />
-                <item
-                    android:id="@+id/DoanhThu"
-                    android:icon="@drawable/baseline_attach_money_24"
-                    android:title="Doanh Thu" />
-            </menu>
-        </item>
-    </group>
     <group android:checkableBehavior="single">
         <item android:title="Khác">
             <menu>

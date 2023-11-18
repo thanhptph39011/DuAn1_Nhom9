@@ -28,26 +28,15 @@ public class NhanVienDao {
     public boolean insertNv(NhanVien nv) {
         ContentValues values = new ContentValues();
         values.put("maNv", nv.getMaNv());
-        values.put("maCoSo", nv.getMaCoSo());
         values.put("hoTen", nv.getHoTen());
         values.put("matKhau", nv.getMatKhau());
         values.put("cccd", nv.getCccd());
         values.put("sdt", nv.getSdt());
+        values.put("maCoSo", nv.getMaCoSo());
         long row = db.insert("NhanVien", null, values);
         return (row > 0);
     }
 
-    public boolean updateNv(NhanVien nv) {
-        ContentValues values = new ContentValues();
-        values.put("maNv", nv.getMaNv());
-        values.put("maCoSo", nv.getMaCoSo());
-        values.put("hoTen", nv.getHoTen());
-        values.put("matKhau", nv.getMatKhau());
-        values.put("cccd", nv.getCccd());
-        values.put("sdt", nv.getSdt());
-        long row = db.update("NhanVien", values, "maNv=?", new String[]{nv.getMaNv()});
-        return (row > 0);
-    }
 
     public boolean deleteNv(String maNv) {
         long row = db.delete("NhanVien", "maNv=?", new String[]{maNv});
@@ -60,11 +49,11 @@ public class NhanVienDao {
         while (c.moveToNext()) {
             NhanVien nv = new NhanVien();
             nv.setMaNv(c.getString(0));
-            nv.setMaCoSo(c.getString(1));
-            nv.setHoTen(c.getString(2));
-            nv.setMatKhau(c.getString(3));
-            nv.setCccd(c.getInt(4));
-            nv.setSdt(c.getInt(5));
+            nv.setHoTen(c.getString(1));
+            nv.setMatKhau(c.getString(2));
+            nv.setCccd(c.getString(3));
+            nv.setSdt(c.getInt(4));
+            nv.setMaCoSo(c.getString(5));
             list.add(nv);
         }
         return list;

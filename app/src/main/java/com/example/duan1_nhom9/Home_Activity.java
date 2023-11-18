@@ -30,6 +30,7 @@ import com.example.duan1_nhom9.Fragments.HoaDonFragment;
 import com.example.duan1_nhom9.Fragments.KhachHangFragment;
 import com.example.duan1_nhom9.Fragments.LoaiGiayFragment;
 import com.example.duan1_nhom9.Fragments.NhanVienFragment;
+import com.example.duan1_nhom9.Fragments.PhuKienFragment;
 import com.example.duan1_nhom9.Fragments.TopFragment;
 import com.example.duan1_nhom9.Model.NhanVien;
 import com.example.duan1_nhom9.Model.Photo;
@@ -99,13 +100,10 @@ public class Home_Activity extends AppCompatActivity {
                 } else if (item.getItemId() == R.id.QuanLyKhachHang) {
                     KhachHangFragment khachHangFragment = new KhachHangFragment();
                     replaceFrg(khachHangFragment);
-                } else if (item.getItemId() == R.id.topgiayMuaNhieuNhat) {
-                    TopFragment fragment = new TopFragment();
+                } else if (item.getItemId() == R.id.QuanLyPhuKien) {
+                    PhuKienFragment fragment = new PhuKienFragment();
                     replaceFrg(fragment);
-                } else if (item.getItemId() == R.id.DoanhThu) {
-                    DoanhThuFragment doanhThuFragment = new DoanhThuFragment();
-                    replaceFrg(doanhThuFragment);
-                } else if (item.getItemId() == R.id.DoiMk) {
+                }  else if (item.getItemId() == R.id.DoiMk) {
                     ChangePassFragment changePassFragment = new ChangePassFragment();
                     replaceFrg(changePassFragment);
                 } else if (item.getItemId()==R.id.QuanLyNhanVien) {

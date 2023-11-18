@@ -117,6 +117,7 @@ public class CoSoAdapter extends RecyclerView.Adapter<CoSoAdapter.viewholer> {
         //Gán dl
         maCs.setText(cs.getMaCoSo());
         diaChi.setText(cs.getDiaChi());
+        maCs.setEnabled(false);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,7 +128,7 @@ public class CoSoAdapter extends RecyclerView.Adapter<CoSoAdapter.viewholer> {
                     maCs.requestFocus();
                     return;
                 }
-                if (diaChi.equals("")) {
+                if (dchi.equals("")) {
                     Toast.makeText(context, "Vui lòng nhập địa chỉ", Toast.LENGTH_SHORT).show();
                     diaChi.requestFocus();
                     return;

@@ -10,9 +10,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <EditText
-            android:id="@+id/edtTimKiem"
+            android:id="@+id/edtTimKiemKh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/baseline_search_24"
             android:layout_margin="10dp" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rycKhachHang"
