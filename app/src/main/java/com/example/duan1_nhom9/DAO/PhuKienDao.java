@@ -27,22 +27,22 @@ public class PhuKienDao {
 
     public boolean insertPhuKien(PhuKien pk) {
         ContentValues values = new ContentValues();
-        values.put("tenPhuKien", pk.getTenPhuKien());
-        values.put("giaPhuKien", pk.getGiaPhuKien());
+        values.put("tenPk", pk.getTenPhuKien());
+        values.put("giaMua", pk.getGiaPhuKien());
         long row = db.insert("PhuKien", null, values);
         return (row > 0);
     }
 
     public boolean updatePhuKien(PhuKien pk) {
         ContentValues values = new ContentValues();
-        values.put("tenPhuKien", pk.getTenPhuKien());
-        values.put("giaPhuKien", pk.getGiaPhuKien());
-        long row = db.update("PhuKien", values, "maPhuKien=?", new String[]{String.valueOf(pk.getMaPhuKien())});
+        values.put("tenPk", pk.getTenPhuKien());
+        values.put("giaMua", pk.getGiaPhuKien());
+        long row = db.update("PhuKien", values, "maPk=?", new String[]{String.valueOf(pk.getMaPhuKien())});
         return (row > 0);
     }
 
     public boolean deletePhuKien(int maPhuKien) {
-        long row = db.delete("PhuKien", "maPhuKien=?", new String[]{String.valueOf(maPhuKien)});
+        long row = db.delete("PhuKien", "maPk=?", new String[]{String.valueOf(maPhuKien)});
         return (row > 0);
     }
 

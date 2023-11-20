@@ -15,6 +15,11 @@ public class PhuKien {
         this.giaPhuKien = giaPhuKien;
     }
 
+    public PhuKien(String tenPhuKien, int giaPhuKien) {
+        this.tenPhuKien = tenPhuKien;
+        this.giaPhuKien = giaPhuKien;
+    }
+
     public int getMaPhuKien() {
         return maPhuKien;
     }
