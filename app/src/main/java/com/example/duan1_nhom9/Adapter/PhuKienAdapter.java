@@ -44,9 +44,9 @@ public class PhuKienAdapter extends RecyclerView.Adapter<PhuKienAdapter.viewhole
 
     @Override
     public void onBindViewHolder(@NonNull viewholer holder, int position) {
-        holder.maPhuKien.setText(listpk.get(position).getMaPhuKien());
+        holder.maPhuKien.setText(listpk.get(position).getMaPhuKien()+"");
         holder.tenPhuKien.setText(listpk.get(position).getTenPhuKien());
-        holder.giaPhuKien.setText(listpk.get(position).getGiaPhuKien());
+        holder.giaPhuKien.setText(listpk.get(position).getGiaPhuKien()+"");
         PhuKien pk = listpk.get(position);
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,8 +98,8 @@ public class PhuKienAdapter extends RecyclerView.Adapter<PhuKienAdapter.viewhole
             maPhuKien = itemView.findViewById(R.id.tvMaPk_itemPhuKien);
             tenPhuKien = itemView.findViewById(R.id.tvTenPK_itemPhuKien);
             giaPhuKien = itemView.findViewById(R.id.tvGiaPK_itemPhuKien);
-            btnUpdate = itemView.findViewById(R.id.btnUpdate_CoSo);
-            btnDelete = itemView.findViewById(R.id.btnDelete_CoSo);
+            btnUpdate = itemView.findViewById(R.id.btnUpdate_PhuKien);
+            btnDelete = itemView.findViewById(R.id.btnDelete_PhuKien);
         }
     }
 
@@ -118,21 +118,14 @@ public class PhuKienAdapter extends RecyclerView.Adapter<PhuKienAdapter.viewhole
         ImageView btnSave = view.findViewById(R.id.update_Pk);
         ImageView btnHuy = view.findViewById(R.id.huyUpdate_Pk);
         //Gán dl
-        maPk.setText(pk.getMaPhuKien());
+        maPk.setText(String.valueOf(pk.getMaPhuKien()));
         tenPk.setText(pk.getTenPhuKien());
-        giaPk.setText(pk.getGiaPhuKien());
-        maPk.setEnabled(false);
+        giaPk.setText(pk.getGiaPhuKien()+"");
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String ma = maPk.getText().toString();
                 String ten = tenPk.getText().toString();
                 String gia = giaPk.getText().toString();
-                if (ma.equals("")) {
-                    Toast.makeText(context, "vui lòng nhập mã phụ kiện", Toast.LENGTH_SHORT).show();
-                    maPk.requestFocus();
-                    return;
-                }
                 if (ten.equals("")) {
                     Toast.makeText(context, "Vui lòng nhập tên phụ kiện", Toast.LENGTH_SHORT).show();
                     tenPk.requestFocus();
