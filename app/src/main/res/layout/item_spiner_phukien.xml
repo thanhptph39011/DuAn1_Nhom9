@@ -5,13 +5,16 @@
     android:background="@drawable/boder"
     android:orientation="horizontal">
 <TextView
+    android:id="@+id/tvMaPhuKien_spinner"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Phụ kiện: "/>
+    android:text="1:"/>
     <TextView
-        android:id="@+id/tvPhuKien_spinner"
+        android:id="@+id/tvTenPhuKien_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:text="Nike"
+        />
 </LinearLayout>
