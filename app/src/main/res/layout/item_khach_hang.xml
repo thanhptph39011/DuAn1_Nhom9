@@ -22,7 +22,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,6 +36,7 @@
                 android:id="@+id/tvMaKH_itemKhachHang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/bar"
                 android:textStyle="bold"
                 android:layout_marginLeft="5dp" />
         </LinearLayout>

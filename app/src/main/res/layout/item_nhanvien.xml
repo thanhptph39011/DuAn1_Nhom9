@@ -32,6 +32,7 @@
                     android:id="@+id/tvMaNv_item"
                     android:textStyle="bold"
                     android:text="NhanVien01"
+                    android:textColor="@color/bar"
                     />
             </LinearLayout>
             <LinearLayout
