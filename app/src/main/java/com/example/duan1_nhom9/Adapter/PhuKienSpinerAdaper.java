@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class PhuKienSpinerAdaper extends ArrayAdapter<PhuKien> {
     private Context context;
     private ArrayList<PhuKien> list;
-    TextView tvMaPhuKien;
+    TextView tvMaPhuKien, tvTenPhuKien;
 
     public PhuKienSpinerAdaper(@NonNull Context context, ArrayList<PhuKien> list) {
         super(context, 0,list);
@@ -36,8 +36,10 @@ public class PhuKienSpinerAdaper extends ArrayAdapter<PhuKien> {
         }
         final PhuKien item = list.get(position);
         if (item != null) {
-            tvMaPhuKien = v.findViewById(R.id.tvPhuKien_spinner);
-            tvMaPhuKien.setText(item.getMaPhuKien());
+            tvMaPhuKien = v.findViewById(R.id.tvTenPhuKien_spinner);
+            tvMaPhuKien.setText(item.getMaPhuKien() + ". ");
+            tvTenPhuKien = v.findViewById(R.id.tvTenPhuKien_spinner);
+            tvTenPhuKien.setText(item.getTenPhuKien());
         }
         return v;
     }
@@ -51,8 +53,10 @@ public class PhuKienSpinerAdaper extends ArrayAdapter<PhuKien> {
         }
        PhuKien item = list.get(position);
         if (item != null) {
-            tvMaPhuKien = v.findViewById(R.id.tvPhuKien_spinner);
-            tvMaPhuKien.setText(item.getMaPhuKien());
+            tvMaPhuKien = v.findViewById(R.id.tvTenPhuKien_spinner);
+            tvMaPhuKien.setText(item.getMaPhuKien() + ". ");
+            tvTenPhuKien = v.findViewById(R.id.tvTenPhuKien_spinner);
+            tvTenPhuKien.setText(item.getTenPhuKien());
         }
         return v;
     }
