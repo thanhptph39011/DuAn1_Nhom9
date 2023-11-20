@@ -61,7 +61,8 @@ public class Home_Activity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         nav = findViewById(R.id.nav);
         bottomNavigationView = findViewById(R.id.botomMenu);
-
+//đổi màu title Toolbar
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
 // gán toolbar
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);

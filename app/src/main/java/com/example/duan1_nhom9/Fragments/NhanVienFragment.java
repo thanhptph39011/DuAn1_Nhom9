@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -146,67 +147,59 @@ public class NhanVienFragment extends Fragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Thông báo");
-                builder.setIcon(R.drawable.baseline_warning_24);
-                builder.setMessage("Bạn có chắc chắn muốn thêm không");
-                builder.setCancelable(true);
-                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String maNv = edtMaNv.getText().toString();
-                        String hoTen = edtHoTen.getText().toString();
-                        String pass = edtPass.getText().toString();
-                        String sdt = edtSdt.getText().toString();
-                        String cccd = edtCccd.getText().toString();
-                        CoSo objCs = listCoSo.get(spinner.getSelectedItemPosition());
-                        String coso = objCs.getMaCoSo();
-                        if (maNv.equals("")) {
-                            Toast.makeText(getActivity(), "Vui lòng nhập mã nv", Toast.LENGTH_SHORT).show();
-                            edtMaNv.requestFocus();
-                            return;
-                        }
-                        if (hoTen.equals("")) {
-                            Toast.makeText(getActivity(), "Vui lòng nhập họ tên", Toast.LENGTH_SHORT).show();
-                            edtHoTen.requestFocus();
-                            return;
-                        }
-                        if (pass.equals("")) {
-                            Toast.makeText(getActivity(), "Vui lòng nhập pass", Toast.LENGTH_SHORT).show();
-                            edtPass.requestFocus();
-                            return;
-                        }
-                        if (cccd.equals("")) {
-                            Toast.makeText(getActivity(), "Vui lòng nhập Cccd", Toast.LENGTH_SHORT).show();
-                            edtCccd.requestFocus();
-                            return;
-                        }
+                String maNv = edtMaNv.getText().toString();
+                String hoTen = edtHoTen.getText().toString();
+                String pass = edtPass.getText().toString();
+                String sdt = edtSdt.getText().toString();
+                String cccd = edtCccd.getText().toString();
+                CoSo objCs = listCoSo.get(spinner.getSelectedItemPosition());
+                String coso = objCs.getMaCoSo();
+                if (maNv.equals("")) {
+                    Toast.makeText(getActivity(), "Vui lòng nhập mã nv", Toast.LENGTH_SHORT).show();
+                    edtMaNv.requestFocus();
+                    return;
+                }
+                if (hoTen.equals("")) {
+                    Toast.makeText(getActivity(), "Vui lòng nhập họ tên", Toast.LENGTH_SHORT).show();
+                    edtHoTen.requestFocus();
+                    return;
+                }
+                if (pass.equals("")) {
+                    Toast.makeText(getActivity(), "Vui lòng nhập pass", Toast.LENGTH_SHORT).show();
+                    edtPass.requestFocus();
+                    return;
+                }
+                if (cccd.equals("")) {
+                    Toast.makeText(getActivity(), "Vui lòng nhập Cccd", Toast.LENGTH_SHORT).show();
+                    edtCccd.requestFocus();
+                    return;
+                }
 
-                        if (sdt.equals("")) {
-                            Toast.makeText(getActivity(), "Vui lòng nhập sđt", Toast.LENGTH_SHORT).show();
-                            edtSdt.requestFocus();
-                            return;
-                        }
-                        NhanVien nv = new NhanVien(maNv, coso, hoTen, pass, cccd, Integer.parseInt(sdt));
-                        if (nhanVienDao.insertNv(nv)) {
-                            listNv.clear();
-                            listNv.addAll(nhanVienDao.getAll());
-                            adapter.notifyDataSetChanged();
-                            Toast.makeText(getActivity(), "Add Succ", Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
-                        } else {
-                            Toast.makeText(getActivity(), "Add fail", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                AlertDialog alert = builder.create();
-                builder.show();
+                if (sdt.equals("")) {
+                    Toast.makeText(getActivity(), "Vui lòng nhập sđt", Toast.LENGTH_SHORT).show();
+                    edtSdt.requestFocus();
+                    return;
+                }
+                if (sdt.length() != 10) {
+                    Toast.makeText(getActivity(), "Sdt phải là 10 số", Toast.LENGTH_SHORT).show();
+                    edtSdt.requestFocus();
+                    return;
+                }
+                if (!TextUtils.isDigitsOnly(sdt)) {
+                    Toast.makeText(getActivity(), "Sdt phải là số", Toast.LENGTH_SHORT).show();
+                    edtSdt.requestFocus();
+                    return;
+                }
+                NhanVien nv = new NhanVien(maNv, coso, hoTen, pass, cccd, Integer.parseInt(sdt));
+                if (nhanVienDao.insertNv(nv)) {
+                    listNv.clear();
+                    listNv.addAll(nhanVienDao.getAll());
+                    adapter.notifyDataSetChanged();
+                    Toast.makeText(getActivity(), "Add Succ", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                } else {
+                    Toast.makeText(getActivity(), "Add fail", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         btnHuy.setOnClickListener(new View.OnClickListener() {

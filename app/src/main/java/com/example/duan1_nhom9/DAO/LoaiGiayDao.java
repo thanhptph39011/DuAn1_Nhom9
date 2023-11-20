@@ -57,5 +57,15 @@ public class LoaiGiayDao {
         }
         return list;
     }
+    public LoaiGiay getID(String id){
+        String sql ="select * from LoaiGiay where maLoai=?";
+        List<LoaiGiay> list = getData(sql,id);
+        if(!list.isEmpty()){
+            return list.get(0);
+        }else{
+            return null;
+        }
+
+    }
 
 }
