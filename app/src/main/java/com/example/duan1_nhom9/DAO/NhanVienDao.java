@@ -36,6 +36,15 @@ public class NhanVienDao {
         long row = db.insert("NhanVien", null, values);
         return (row > 0);
     }
+    public long updatePass(NhanVien obj) {
+        ContentValues values = new ContentValues();
+        values.put("hoTen", obj.getHoTen());
+        values.put("matKhau", obj.getMatKhau());
+        values.put("cccd",obj.getCccd());
+        values.put("sdt",obj.getSdt());
+        values.put("maCoSo",obj.getMaCoSo());
+        return db.update("NhanVien", values, "maNv = ?", new String[]{String.valueOf(obj.getMaNv())});
+    }
 
 
     public boolean deleteNv(String maNv) {

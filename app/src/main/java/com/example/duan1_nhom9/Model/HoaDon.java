@@ -5,24 +5,26 @@ import java.util.Date;
 public class HoaDon {
     private int maHoaDon;
     private int maKh;
-    private int maGiay;
     private String maNv;
     private Date ngayMua;
-    private int size;
-    private int giaMua;
     private String thanhToan;
+
 
     public HoaDon() {
     }
 
-    public HoaDon(int maHoaDon, int maKh, int maGiay, String maNv, Date ngayMua, int size, int giaMua, String thanhToan) {
+    public HoaDon(int maHoaDon, int maKh, String maNv, Date ngayMua, String thanhToan) {
         this.maHoaDon = maHoaDon;
         this.maKh = maKh;
-        this.maGiay = maGiay;
         this.maNv = maNv;
         this.ngayMua = ngayMua;
-        this.size = size;
-        this.giaMua = giaMua;
+        this.thanhToan = thanhToan;
+    }
+
+    public HoaDon(int maKh, String maNv, Date ngayMua, String thanhToan) {
+        this.maKh = maKh;
+        this.maNv = maNv;
+        this.ngayMua = ngayMua;
         this.thanhToan = thanhToan;
     }
 
@@ -42,14 +44,6 @@ public class HoaDon {
         this.maKh = maKh;
     }
 
-    public int getMaGiay() {
-        return maGiay;
-    }
-
-    public void setMaGiay(int maGiay) {
-        this.maGiay = maGiay;
-    }
-
     public String getMaNv() {
         return maNv;
     }
@@ -64,22 +58,6 @@ public class HoaDon {
 
     public void setNgayMua(Date ngayMua) {
         this.ngayMua = ngayMua;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public int getGiaMua() {
-        return giaMua;
-    }
-
-    public void setGiaMua(int giaMua) {
-        this.giaMua = giaMua;
     }
 
     public String getThanhToan() {

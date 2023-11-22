@@ -136,6 +136,16 @@ public class PhuKienAdapter extends RecyclerView.Adapter<PhuKienAdapter.viewhole
                     giaPk.requestFocus();
                     return;
                 }
+                try {
+                    int giaa = Integer.parseInt(gia);
+                    if(giaa<0){
+                        Toast.makeText(context, "Giá >0", Toast.LENGTH_SHORT).show();
+                        giaPk.requestFocus();
+                        return;
+                    }
+                }catch (Exception e){
+                    Toast.makeText(context, "Giá là số", Toast.LENGTH_SHORT).show();
+                }
                 pk.setTenPhuKien(tenPk.getText().toString());
                 pk.setGiaPhuKien(Integer.parseInt(giaPk.getText().toString()));
                 if (phuKienDao.updatePhuKien(pk)) {

@@ -23,7 +23,7 @@ public class DbHelper extends SQLiteOpenHelper {
         String createTablePhuKien =
                 "create table PhuKien(maPk integer primary key autoincrement, tenPk text not null, giaMua integer not null)";
         sqLiteDatabase.execSQL(createTablePhuKien);
-         //bảng loại giày
+        //bảng loại giày
         String createTableLoaiGiay =
                 "create table LoaiGiay(maLoai integer primary key autoincrement, tenLoai text, loaiHang text)";
         sqLiteDatabase.execSQL(createTableLoaiGiay);
@@ -41,9 +41,13 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(createTableNhanVien);
         //Bảng hoá đơn
         String createTableHoaDon =
-                "create table HoaDon(maHoaDon integer not null, maKh integer references KhachHang(maKh),maGiay integer references Giay(maGiay),maNv text references NhanVien(maNv),ngay date not null, size integer not null, tienMua integer not null, thanhToan text not null)";
+                "create table HoaDon(maHoaDon integer not null, maKh integer references KhachHang(maKh),maNv text references NhanVien(maNv),ngay date not null, thanhToan text not null)";
         sqLiteDatabase.execSQL(createTableHoaDon);
+        //Bảng CtHoaDon
+        String createTableCtHd = "create table Cthd(maCthd integer primary key autoincrement, maHoaDon integer references HoaDon(maHoaDon), maGiay integer references Giay(maGiay), maPk integer references PhuKien(maPk), size integer not null, giaMua integer not null)";
+        sqLiteDatabase.execSQL(createTableCtHd);
     }
+
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         String dropTableCoSo = "drop table if exists CoSo";
@@ -60,6 +64,8 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(dropTableNhanVien);
         String dropTableHoaDon = "drop table if exists HoaDon";
         sqLiteDatabase.execSQL(dropTableHoaDon);
+        String dropTableCtHd = "drop table if exists Cthd";
+        sqLiteDatabase.execSQL(dropTableCtHd);
         onCreate(sqLiteDatabase);
 
     }

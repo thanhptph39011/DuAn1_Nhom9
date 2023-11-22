@@ -99,7 +99,7 @@ public class GiayFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDialog(getActivity(), 0);
+                    openDialog(getActivity(), 0);
             }
         });
         lvGiay.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {

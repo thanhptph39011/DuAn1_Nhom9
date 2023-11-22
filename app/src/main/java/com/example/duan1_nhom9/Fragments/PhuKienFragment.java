@@ -55,9 +55,9 @@ public class PhuKienFragment extends Fragment {
         phuKienDao = new PhuKienDao(getActivity());
         list = (ArrayList<PhuKien>) phuKienDao.GetAll();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
-        tempList =(ArrayList<PhuKien>)phuKienDao.GetAll();
+        tempList = (ArrayList<PhuKien>) phuKienDao.GetAll();
         rycPhuKien.setLayoutManager(layoutManager);
-        adapter = new PhuKienAdapter(getActivity(),list);
+        adapter = new PhuKienAdapter(getActivity(), list);
         rycPhuKien.setAdapter(adapter);
         fltAddPhuKien.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +112,12 @@ public class PhuKienFragment extends Fragment {
                     return;
                 }
                 try {
-
+                    int gia = Integer.parseInt(giaTien);
+                    if (gia < 0) {
+                        Toast.makeText(getActivity(), "Giá >0", Toast.LENGTH_SHORT).show();
+                        edtGiaPK_itemAddPhuKien.requestFocus();
+                        return;
+                    }
                     PhuKien pk = new PhuKien(tenPk, Integer.parseInt(giaTien));
                     if (phuKienDao.insertPhuKien(pk)) {
                         list.clear();

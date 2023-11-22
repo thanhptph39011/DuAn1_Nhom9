@@ -28,11 +28,8 @@ public class HoaDonDao {
     public boolean insertHoaDon(HoaDon hd) {
         ContentValues values = new ContentValues();
         values.put("maKh", hd.getMaKh());
-        values.put("maGiay", hd.getMaGiay());
         values.put("maNv",hd.getMaNv());
         values.put("ngay",hd.getNgayMua().getTime());
-        values.put("size",hd.getSize());
-        values.put("tienMua",hd.getGiaMua());
         values.put("thanhToan",hd.getThanhToan());
         long row = db.insert("HoaDon", null, values);
         return (row > 0);
@@ -41,13 +38,10 @@ public class HoaDonDao {
     public boolean updateHoaDon(HoaDon hd) {
         ContentValues values = new ContentValues();
         values.put("maKh", hd.getMaKh());
-        values.put("maGiay", hd.getMaGiay());
         values.put("maNv",hd.getMaNv());
         values.put("ngay",hd.getNgayMua().getTime());
-        values.put("size",hd.getSize());
-        values.put("tienMua",hd.getGiaMua());
         values.put("thanhToan",hd.getThanhToan());
-        long row = db.update("HoaDon",  values,"maHoaDom=?",new String[]{String.valueOf(hd.getMaHoaDon())});
+        long row = db.update("HoaDon",  values,"maHoaDon=?",new String[]{String.valueOf(hd.getMaHoaDon())});
         return (row > 0);
     }
     public boolean deleteHoaDon(int mahd){
@@ -61,12 +55,9 @@ public class HoaDonDao {
             HoaDon hd = new HoaDon();
             hd.setMaHoaDon(cursor.getInt(0));
             hd.setMaKh(cursor.getInt(1));
-            hd.setMaGiay(cursor.getInt(2));
-            hd.setMaNv(cursor.getString(3));
+            hd.setMaNv(cursor.getString(2));
             hd.setNgayMua(new Date(cursor.getLong(4)));
-            hd.setSize(cursor.getInt(5));
-            hd.setGiaMua(cursor.getInt(6));
-            hd.setThanhToan(cursor.getString(7));
+            hd.setThanhToan(cursor.getString(5));
             list.add(hd);
         }
         return list;
