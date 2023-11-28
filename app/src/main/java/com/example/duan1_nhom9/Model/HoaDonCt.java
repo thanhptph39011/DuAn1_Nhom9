@@ -2,30 +2,25 @@ package com.example.duan1_nhom9.Model;
 
 public class HoaDonCt {
     private int maCthd;
-    private int maHoaDon;
+    private String soHoaDon;
     private  int maGiay;
-    private int maPk;
     private int giaMua;
-    private int size;
+    private int soLuong;
 
     public HoaDonCt() {
     }
 
-    public HoaDonCt(int maCthd, int maHoaDon, int maGiay, int maPk, int giaMua,int size) {
-        this.maCthd = maCthd;
-        this.maHoaDon = maHoaDon;
+    public HoaDonCt(int maGiay, int giaMua, int soLuong) {
         this.maGiay = maGiay;
-        this.maPk = maPk;
         this.giaMua = giaMua;
-        this.size = size;
+        this.soLuong = soLuong;
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
+    public HoaDonCt(String soHoaDon, int maGiay, int giaMua, int soLuong) {
+        this.soHoaDon = soHoaDon;
+        this.maGiay = maGiay;
+        this.giaMua = giaMua;
+        this.soLuong = soLuong;
     }
 
     public int getMaCthd() {
@@ -36,12 +31,12 @@ public class HoaDonCt {
         this.maCthd = maCthd;
     }
 
-    public int getMaHoaDon() {
-        return maHoaDon;
+    public String getSoHoaDon() {
+        return soHoaDon;
     }
 
-    public void setMaHoaDon(int maHoaDon) {
-        this.maHoaDon = maHoaDon;
+    public void setSoHoaDon(String soHoaDon) {
+        this.soHoaDon = soHoaDon;
     }
 
     public int getMaGiay() {
@@ -52,19 +47,19 @@ public class HoaDonCt {
         this.maGiay = maGiay;
     }
 
-    public int getMaPk() {
-        return maPk;
-    }
-
-    public void setMaPk(int maPk) {
-        this.maPk = maPk;
-    }
-
     public int getGiaMua() {
         return giaMua;
     }
 
     public void setGiaMua(int giaMua) {
         this.giaMua = giaMua;
+    }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
     }
 }

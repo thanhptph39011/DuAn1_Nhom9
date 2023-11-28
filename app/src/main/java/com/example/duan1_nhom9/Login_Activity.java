@@ -36,6 +36,7 @@ public class Login_Activity extends AppCompatActivity {
         edtUserName.setText(preferences.getString("userName", ""));
         edtPassWord.setText((preferences.getString("passWord", "")));
         chkLuuMk.setChecked(preferences.getBoolean("remember", false));
+        //
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

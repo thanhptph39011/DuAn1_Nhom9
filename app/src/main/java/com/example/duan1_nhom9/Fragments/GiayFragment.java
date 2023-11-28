@@ -99,7 +99,7 @@ public class GiayFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    openDialog(getActivity(), 0);
+                openDialog(getActivity(), 0);
             }
         });
         lvGiay.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -180,34 +180,54 @@ public class GiayFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-             try {
-                 item = new Giay();
-                 item.setTenGiay(edtTenGiay.getText().toString());
-                 item.setGiaMua(Integer.parseInt(edtGia.getText().toString()));
-                 item.setMoTa(edtGhiChu.getText().toString());
-                 item.setMaLoai(maLoaiGiay);
-                 if (validate() > 0) {
-                     if (type == 0) {
+                try {
+                    item = new Giay();
+                    item.setTenGiay(edtTenGiay.getText().toString());
+                    item.setGiaMua(Integer.parseInt(edtGia.getText().toString()));
+                    item.setMoTa(edtGhiChu.getText().toString());
+                    item.setMaLoai(maLoaiGiay);
+                    //
+                    String tenGiay = edtTenGiay.getText().toString();
+                    String giaMua = edtGia.getText().toString();
+                    String moTa = edtGhiChu.getText().toString();
+                    if (tenGiay.isEmpty() || giaMua.isEmpty() || moTa.isEmpty()) {
+                        Toast.makeText(getActivity(), "Nhập đủ thông tin", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    try {
+                        int gia = Integer.parseInt(giaMua);
+                        if (gia <= 0) {
+                            Toast.makeText(context, "Giá >0", Toast.LENGTH_SHORT).show();
+                            edtGia.requestFocus();
+                            return;
+                        }
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(context, "Giá phải là số", Toast.LENGTH_SHORT).show();
+                        edtGia.requestFocus();
+                        return;
+                    }
+                    if (type == 0) {
 //insert
-                         if (giayDao.insertGiay(item)) {
-                             Toast.makeText(context, "Add Succ", Toast.LENGTH_SHORT).show();
-                         } else {
-                             Toast.makeText(context, "Add Fail", Toast.LENGTH_SHORT).show();
-                         }
-                     } else {
-                         item.setMaGiay(Integer.parseInt(edtMaGiay.getText().toString()));
-                         if (giayDao.updateGiay(item)) {
-                             Toast.makeText(context, "Update Succ", Toast.LENGTH_SHORT).show();
-                         } else {
-                             Toast.makeText(context, "Update Fail", Toast.LENGTH_SHORT).show();
-                         }
-                     }
-                     capNhapLv();
-                     dialog.dismiss();
-                 }
-             }catch (Exception e){
-                 Toast.makeText(context, "Giá là số", Toast.LENGTH_SHORT).show();
-             }
+                        if (giayDao.insertGiay(item)) {
+                            Toast.makeText(context, "Add Succ", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(context, "Add Fail", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        item.setMaGiay(Integer.parseInt(edtMaGiay.getText().toString()));
+                        if (giayDao.updateGiay(item)) {
+                            Toast.makeText(context, "Update Succ", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(context, "Update Fail", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    capNhapLv();
+                    dialog.dismiss();
+                } catch (Exception e) {
+                    Toast.makeText(context, "Nhập đẩy đủ thông tin", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
             }
         });
         dialog.show();
@@ -221,12 +241,12 @@ public class GiayFragment extends Fragment {
         } else {
             try {
                 int gia = Integer.parseInt(edtGia.getText().toString());
-                if (gia < 0) {
+                if (gia <= 0) {
                     Toast.makeText(getActivity(), "Nhập giá >0", Toast.LENGTH_SHORT).show();
                     edtGia.requestFocus();
                     check = -1;
                 }
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 Toast.makeText(getActivity(), "Giá là số", Toast.LENGTH_SHORT).show();
                 edtGia.requestFocus();
                 check = -1;
@@ -234,7 +254,8 @@ public class GiayFragment extends Fragment {
         }
         return check;
     }
-    public void xoa(int Id){
+
+    public void xoa(int Id) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Cảnh báo");
         builder.setIcon(R.drawable.baseline_warning_24);

@@ -106,17 +106,18 @@ public class KhachHangFragment extends Fragment {
             public void onClick(View v) {
 
                 String tenKh = edtTenKH_itemAddKhachHang.getText().toString();
-                String Sdt = edtSdt_itemAddKhachHang.getText().toString();
-                if (tenKh.isEmpty() || Sdt.isEmpty()) {
+                String sdt = edtSdt_itemAddKhachHang.getText().toString();
+                if (tenKh.isEmpty() || sdt.isEmpty()) {
                     Toast.makeText(getActivity(), "Nhập đủ thông tin", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if (sdt.length() != 10 || !sdt.matches("\\d+")) {
+                    Toast.makeText(getActivity(), "Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 try {
-                    if (Sdt.length() != 10) {
-                        Toast.makeText(getActivity(), "Số điện thoại phải là 10 số", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    KhachHang kh = new KhachHang(tenKh, Integer.parseInt(Sdt));
+                    int phoneNumber = Integer.parseInt(sdt);
+                    KhachHang kh = new KhachHang(tenKh, phoneNumber);
                     if (khachHangDao.insertKh(kh)) {
                         list.clear();
                         list.addAll(khachHangDao.getAll());
@@ -127,9 +128,9 @@ public class KhachHangFragment extends Fragment {
                         Toast.makeText(getActivity(), "Add Fail", Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
-                    Toast.makeText(getActivity(), "Số điện thoại không đúng định dạng", Toast.LENGTH_SHORT).show();
-                    return;
+                    Toast.makeText(getActivity(), "Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
                 }
+
 
 //
 

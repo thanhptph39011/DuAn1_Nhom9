@@ -147,11 +147,11 @@ public class NhanVienFragment extends Fragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String maNv = edtMaNv.getText().toString();
-                String hoTen = edtHoTen.getText().toString();
-                String pass = edtPass.getText().toString();
-                String sdt = edtSdt.getText().toString();
-                String cccd = edtCccd.getText().toString();
+                String maNv = edtMaNv.getText().toString().trim();
+                String hoTen = edtHoTen.getText().toString().trim();
+                String pass = edtPass.getText().toString().trim();
+                String sdt = edtSdt.getText().toString().trim();
+                String cccd = edtCccd.getText().toString().trim();
                 CoSo objCs = listCoSo.get(spinner.getSelectedItemPosition());
                 String coso = objCs.getMaCoSo();
                 if (maNv.equals("")) {
@@ -180,14 +180,8 @@ public class NhanVienFragment extends Fragment {
                     edtSdt.requestFocus();
                     return;
                 }
-                if (sdt.length() != 10) {
-                    Toast.makeText(getActivity(), "Sdt phải là 10 số", Toast.LENGTH_SHORT).show();
-                    edtSdt.requestFocus();
-                    return;
-                }
-                if (!TextUtils.isDigitsOnly(sdt)) {
-                    Toast.makeText(getActivity(), "Sdt phải là số", Toast.LENGTH_SHORT).show();
-                    edtSdt.requestFocus();
+                if (sdt.length() != 10 || !sdt.matches("\\d+")) {
+                    Toast.makeText(getActivity(), "Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 NhanVien nv = new NhanVien(maNv, coso, hoTen, pass, cccd, Integer.parseInt(sdt));
@@ -234,11 +228,9 @@ public class NhanVienFragment extends Fragment {
         AlertDialog alert = builder.create();
         builder.show();
     }
-
     void capNhatLv() {
         listNv = (ArrayList<NhanVien>) nhanVienDao.getAll();
         adapter = new NhanVienAdapter(getActivity(), this, listNv);
         lvNhanVien.setAdapter(adapter);
-
     }
 }

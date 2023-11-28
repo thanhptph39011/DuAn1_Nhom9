@@ -30,7 +30,6 @@ import com.example.duan1_nhom9.Fragments.HoaDonFragment;
 import com.example.duan1_nhom9.Fragments.KhachHangFragment;
 import com.example.duan1_nhom9.Fragments.LoaiGiayFragment;
 import com.example.duan1_nhom9.Fragments.NhanVienFragment;
-import com.example.duan1_nhom9.Fragments.PhuKienFragment;
 import com.example.duan1_nhom9.Fragments.TopFragment;
 import com.example.duan1_nhom9.Model.NhanVien;
 import com.example.duan1_nhom9.Model.Photo;
@@ -74,22 +73,27 @@ public class Home_Activity extends AppCompatActivity {
         tvuser = view.findViewById(R.id.tvWellcome);
         Intent intent = getIntent();
         String user = intent.getStringExtra("user");
-        if(user.equalsIgnoreCase("admin")){
+        if (user.equalsIgnoreCase("admin")) {
             nav.getMenu().findItem(R.id.QuanLyNhanVien).setVisible(true);
             bottomNavigationView.getMenu().findItem(R.id.coSo).setVisible(true);
             Toast.makeText(this, "Wellcome Admin", Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             nhanVienDao = new NhanVienDao(this);
             NhanVien nv = nhanVienDao.getID(user);
             String userName = nv.getHoTen();
-            tvuser.setText("Wellcome: "+userName);
+            tvuser.setText("Wellcome: " + userName);
             nav.getMenu().findItem(R.id.DoiMk).setVisible(true);
             Toast.makeText(this, "Wellcome nhân viên", Toast.LENGTH_SHORT).show();
         }
+        HoaDonFragment fragment = new HoaDonFragment();
+        replaceFrg(fragment);
+
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.QuanLyHoaDon) {
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("maNv",user);
                     HoaDonFragment hoaDonFragment = new HoaDonFragment();
                     replaceFrg(hoaDonFragment);
                 } else if (item.getItemId() == R.id.QuanLyLoaiGiay) {
@@ -101,17 +105,17 @@ public class Home_Activity extends AppCompatActivity {
                 } else if (item.getItemId() == R.id.QuanLyKhachHang) {
                     KhachHangFragment khachHangFragment = new KhachHangFragment();
                     replaceFrg(khachHangFragment);
-                } else if (item.getItemId() == R.id.QuanLyPhuKien) {
-                    PhuKienFragment fragment = new PhuKienFragment();
-                    replaceFrg(fragment);
-                }  else if (item.getItemId() == R.id.DoiMk) {
+//                } else if (item.getItemId() == R.id.QuanLyPhuKien) {
+//                    PhuKienFragment fragment = new PhuKienFragment();
+//                    replaceFrg(fragment);
+                } else if (item.getItemId() == R.id.DoiMk) {
                     ChangePassFragment changePassFragment = new ChangePassFragment();
                     replaceFrg(changePassFragment);
-                } else if (item.getItemId()==R.id.QuanLyNhanVien) {
+                } else if (item.getItemId() == R.id.QuanLyNhanVien) {
                     NhanVienFragment nhanVienFragment = new NhanVienFragment();
                     replaceFrg(nhanVienFragment);
 
-            } else {
+                } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(Home_Activity.this);
                     builder.setTitle("Cảnh báo");
                     builder.setIcon(R.drawable.baseline_warning_24);

@@ -10,21 +10,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.duan1_nhom9.Model.PhuKien;
+import com.example.duan1_nhom9.Model.Giay;
+import com.example.duan1_nhom9.Model.LoaiGiay;
 import com.example.duan1_nhom9.R;
 
 import java.util.ArrayList;
 
-public class PhuKienSpinerAdaper extends ArrayAdapter<PhuKien> {
+public class GiaySpinerAdapter extends ArrayAdapter<Giay> {
     private Context context;
-    private ArrayList<PhuKien> list;
-    TextView tvMaPhuKien, tvTenPhuKien;
+    private ArrayList<Giay> list;
+    TextView tvMaGiay, tvTenGiay;
 
-    public PhuKienSpinerAdaper(@NonNull Context context, ArrayList<PhuKien> list) {
-        super(context, 0,list);
-        this.context = context;
-        this.list = list;
-    }
+   public GiaySpinerAdapter(@NonNull Context context, ArrayList<Giay> list){
+       super(context,0,list);
+       this.context = context;
+       this.list = list;
+   }
+
 
     @NonNull
     @Override
@@ -32,14 +34,14 @@ public class PhuKienSpinerAdaper extends ArrayAdapter<PhuKien> {
         View v = convertView;
         if (v == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.item_spiner_phukien, null);
+            v = inflater.inflate(R.layout.item_spinner_giay, null);
         }
-        final PhuKien item = list.get(position);
+        final Giay item = list.get(position);
         if (item != null) {
-            tvMaPhuKien = v.findViewById(R.id.tvTenPhuKien_spinner);
-            tvMaPhuKien.setText(item.getMaPhuKien() + ". ");
-            tvTenPhuKien = v.findViewById(R.id.tvTenPhuKien_spinner);
-            tvTenPhuKien.setText(item.getTenPhuKien());
+            tvMaGiay = v.findViewById(R.id.tvMaGiay_spinner);
+            tvMaGiay.setText(item.getMaGiay() + ". ");
+            tvTenGiay = v.findViewById(R.id.tvTenGiay_spinner);
+            tvTenGiay.setText(item.getTenGiay());
         }
         return v;
     }
@@ -49,14 +51,14 @@ public class PhuKienSpinerAdaper extends ArrayAdapter<PhuKien> {
         View v = convertView;
         if (v == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.item_spiner_phukien, null);
+            v = inflater.inflate(R.layout.item_spinner_giay, null);
         }
-       PhuKien item = list.get(position);
+        Giay item = list.get(position);
         if (item != null) {
-            tvMaPhuKien = v.findViewById(R.id.tvTenPhuKien_spinner);
-            tvMaPhuKien.setText(item.getMaPhuKien() + ". ");
-            tvTenPhuKien = v.findViewById(R.id.tvTenPhuKien_spinner);
-            tvTenPhuKien.setText(item.getTenPhuKien());
+            tvMaGiay = v.findViewById(R.id.tvMaGiay_spinner);
+            tvMaGiay.setText(item.getMaGiay() + ". ");
+            tvTenGiay = v.findViewById(R.id.tvTenGiay_spinner);
+            tvTenGiay.setText(item.getTenGiay());
         }
         return v;
     }

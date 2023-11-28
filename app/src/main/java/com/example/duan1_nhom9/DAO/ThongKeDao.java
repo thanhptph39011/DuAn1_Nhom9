@@ -25,17 +25,35 @@ public class ThongKeDao {
     }
     @SuppressLint("Range")
     public List<Top> getTop() {
-        String sqlTop = "Select maGiay,count(maGiay) as soLuong From HoaDon group by maGiay order by soLuong Desc Limit 10";
+        String sqlTop = "SELECT Giay.tenGiay, SUM(Cthd.soLuong) AS soLuongBan\n" +
+                "FROM Cthd\n" +
+                "JOIN Giay ON Cthd.maGiay = Giay.maGiay\n" +
+                "GROUP BY Cthd.maGiay, Giay.tenGiay\n" +
+                "ORDER BY soLuongBan DESC\n" +
+                "LIMIT 10;";
         List<Top> list = new ArrayList<Top>();
-        GiayDao giayDao = new GiayDao(context);
         Cursor c = db.rawQuery(sqlTop, null);
         while (c.moveToNext()) {
             Top top = new Top();
-            Giay giay = giayDao.getID(c.getString(c.getColumnIndex("maGiay")));
-            top.setMaGiay((giay.getTenGiay()));
-            top.setSoLuong(Integer.parseInt(c.getString(c.getColumnIndex("soLuong"))));
+            top.setMaGiay(c.getString(c.getColumnIndex("tenGiay")));
+            top.setSoLuong(Integer.parseInt(c.getString(c.getColumnIndex("soLuongBan"))));
             list.add(top);
         }
         return list;
+    }
+    // thống kê doanh thu
+    @SuppressLint("Range")
+    public int getDoanhThu(String tuNgay, String denNgay) {
+        String sqlDoanhThu = "SELECT SUM(tongTien) as doanhThu FROM Cthd INNER JOIN HoaDon ON Cthd.maHoaDon = HoaDon.maHoaDon WHERE HoaDon.ngay BETWEEN ? AND ?";
+        List<Integer> list = new ArrayList<Integer>();
+        Cursor cursor = db.rawQuery(sqlDoanhThu, new String[]{tuNgay, denNgay});
+        while (cursor.moveToNext()) {
+            try {
+                list.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("doanhThu"))));
+            } catch (Exception e) {
+                list.add(0);
+            }
+        }
+        return list.get(0);
     }
 }

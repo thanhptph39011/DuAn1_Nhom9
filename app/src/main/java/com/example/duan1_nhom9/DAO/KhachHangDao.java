@@ -81,8 +81,10 @@ public class KhachHangDao {
     public KhachHang getID(String id){
         String sql ="select * from KhachHang where maKh=?";
         List<KhachHang> list = getData(sql,id);
-        return list.get(0);
-
+        if (!list.isEmpty()) {
+            return list.get(0);
+        }
+        return null;
     }
 
 

@@ -26,25 +26,32 @@ public class HoaDonCtDao {
         return getData(sql);
     }
 
+    public boolean insertItemHoaDonCt(HoaDonCt hdct) {
+        ContentValues values = new ContentValues();
+//        values.put("maHd", hdct.getMaHoaDon());
+        values.put("maGiay", hdct.getMaGiay());
+        values.put("soLuong",hdct.getSoLuong());
+        values.put("tongTien", hdct.getGiaMua());
+        long row = db.insert("Cthd", null, values);
+        return (row > 0);
+    }
     public boolean insertHoaDonCt(HoaDonCt hdct) {
         ContentValues values = new ContentValues();
-        values.put("maHd", hdct.getMaHoaDon());
+        values.put("maHd", hdct.getSoHoaDon());
         values.put("maGiay", hdct.getMaGiay());
-        values.put("maPk", hdct.getMaPk());
-        values.put("size", hdct.getSize());
-        values.put("giaMua", hdct.getGiaMua());
+        values.put("soLuong",hdct.getSoLuong());
+        values.put("tongTien", hdct.getGiaMua());
         long row = db.insert("Cthd", null, values);
         return (row > 0);
     }
 
     public boolean UpdateHoaDonCt(HoaDonCt hdct) {
         ContentValues values = new ContentValues();
-        values.put("maHd", hdct.getMaHoaDon());
+        values.put("maHd", hdct.getSoHoaDon());
         values.put("maGiay", hdct.getMaGiay());
-        values.put("maPk", hdct.getMaPk());
-        values.put("size", hdct.getSize());
-        values.put("giaMua", hdct.getGiaMua());
-        long row = db.update("Cthd", values, "where maCthd=?", new String[]{String.valueOf(hdct.getMaCthd())});
+        values.put("soLuong",hdct.getSoLuong());
+        values.put("tongTien", hdct.getGiaMua());
+        long row = db.update("Cthd", values, " maCthd=?", new String[]{String.valueOf(hdct.getMaCthd())});
         return (row > 0);
     }
 
@@ -59,14 +66,23 @@ public class HoaDonCtDao {
         while (cursor.moveToNext()) {
             HoaDonCt hdct = new HoaDonCt();
             hdct.setMaCthd(cursor.getInt(0));
-            hdct.setMaHoaDon(cursor.getInt(1));
+            hdct.setSoHoaDon(cursor.getString(1));
             hdct.setMaGiay(cursor.getInt(2));
-            hdct.setMaPk(cursor.getInt(3));
-            hdct.setSize(cursor.getInt(4));
-            hdct.setGiaMua(cursor.getInt(5));
+            hdct.setSoLuong(cursor.getInt(3));
+            hdct.setGiaMua(cursor.getInt(4));
 
             list.add(hdct);
         }
         return list;
+    }
+    public HoaDonCt getID(String id){
+        String sql = "select * from Cthd where maCthd=?";
+        List<HoaDonCt> list = getData(sql,id);
+        return list.get(0);
+    }
+    public int getIdTien(String id){
+        String sql = "select * from Cthd where maCthd=?";
+        List<HoaDonCt> list = getData(sql,id);
+        return list.get(0).getGiaMua();
     }
 }

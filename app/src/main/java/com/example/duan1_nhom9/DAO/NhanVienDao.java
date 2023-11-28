@@ -71,7 +71,11 @@ public class NhanVienDao {
     public NhanVien getID(String id) {
         String sql = "select * from NhanVien where maNv=?";
         List<NhanVien> list = getData(sql, id);
-        return list.get(0);
+        if(!list.isEmpty()){
+            return list.get(0);
+        }else{
+            return null;
+        }
     }
     public int CheckLogin(String id,String password){
         String sql = "select * from NhanVien where maNv=? and matKhau=?";

@@ -17,6 +17,7 @@ import com.example.duan1_nhom9.Model.Giay;
 import com.example.duan1_nhom9.Model.LoaiGiay;
 import com.example.duan1_nhom9.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class GiayAdapter extends ArrayAdapter {

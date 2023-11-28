@@ -27,6 +27,7 @@ public class HoaDonDao {
     }
     public boolean insertHoaDon(HoaDon hd) {
         ContentValues values = new ContentValues();
+        values.put("soHoaDon",hd.getSoHoaDon());
         values.put("maKh", hd.getMaKh());
         values.put("maNv",hd.getMaNv());
         values.put("ngay",hd.getNgayMua().getTime());
@@ -37,6 +38,7 @@ public class HoaDonDao {
     }
     public boolean updateHoaDon(HoaDon hd) {
         ContentValues values = new ContentValues();
+        values.put("soHoaDon",hd.getSoHoaDon());
         values.put("maKh", hd.getMaKh());
         values.put("maNv",hd.getMaNv());
         values.put("ngay",hd.getNgayMua().getTime());
@@ -54,10 +56,11 @@ public class HoaDonDao {
         while (cursor.moveToNext()) {
             HoaDon hd = new HoaDon();
             hd.setMaHoaDon(cursor.getInt(0));
-            hd.setMaKh(cursor.getInt(1));
-            hd.setMaNv(cursor.getString(2));
+            hd.setSoHoaDon(cursor.getString(1));
+            hd.setMaKh(cursor.getInt(2));
+            hd.setMaNv(cursor.getString(3));
             hd.setNgayMua(new Date(cursor.getLong(4)));
-            hd.setThanhToan(cursor.getString(5));
+            hd.setThanhToan(cursor.getInt(5));
             list.add(hd);
         }
         return list;
