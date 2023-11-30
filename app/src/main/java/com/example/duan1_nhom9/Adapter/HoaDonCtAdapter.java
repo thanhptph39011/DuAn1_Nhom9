@@ -46,6 +46,7 @@ public class HoaDonCtAdapter extends ArrayAdapter<HoaDonCt> {
         }
         return tongTien;
     }
+
     public interface OnDeleteSuccessListener {
         void onDeleteSuccess();
     }
@@ -53,6 +54,7 @@ public class HoaDonCtAdapter extends ArrayAdapter<HoaDonCt> {
     public void setOnDeleteSuccessListener(OnDeleteSuccessListener listener) {
         onDeleteSuccessListener = listener;
     }
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -86,7 +88,7 @@ public class HoaDonCtAdapter extends ArrayAdapter<HoaDonCt> {
                     public void onClick(DialogInterface dialog, int which) {
                         if (hoaDonCtDao.deleteHoaDonCt(item.getMaCthd())) {
                             list.clear();
-                            list.addAll(hoaDonCtDao.getAll());
+                            list.addAll(hoaDonCtDao.getAll(item.getSoHoaDon()));
                             notifyDataSetChanged();
                             Toast.makeText(context, "Delete Succ", Toast.LENGTH_SHORT).show();
                             if (onDeleteSuccessListener != null) {

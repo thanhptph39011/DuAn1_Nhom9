@@ -3,7 +3,6 @@ package com.example.duan1_nhom9;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -93,7 +92,7 @@ public class HoaDonCtActivity extends AppCompatActivity {
                         Toast.makeText(HoaDonCtActivity.this, "Thêm  succ", Toast.LENGTH_SHORT).show();
                         edtSoLuong.setText("");
                         list.clear();
-                        list.addAll(hoaDonCtDao.getAll());
+                        list.addAll(hoaDonCtDao.getAll(soHd));
                         adapter.notifyDataSetChanged();
                     } else {
                         Toast.makeText(HoaDonCtActivity.this, "Thêm fail", Toast.LENGTH_SHORT).show();
@@ -112,7 +111,7 @@ public class HoaDonCtActivity extends AppCompatActivity {
     }
 
     public void capNhapLv() {
-        list = (ArrayList<HoaDonCt>) hoaDonCtDao.getAll();
+        list = (ArrayList<HoaDonCt>) hoaDonCtDao.getAll(soHd);
         adapter = new HoaDonCtAdapter(this, list);
         adapter.setOnDeleteSuccessListener(new HoaDonCtAdapter.OnDeleteSuccessListener() {
             @Override

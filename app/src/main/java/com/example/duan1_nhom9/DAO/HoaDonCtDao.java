@@ -21,8 +21,8 @@ public class HoaDonCtDao {
         db = dbHelper.getWritableDatabase();
     }
 
-    public List<HoaDonCt> getAll() {
-        String sql = "Select * from Cthd";
+    public List<HoaDonCt> getAll(int maHd) {
+        String sql = "Select * from Cthd where maHoaDon ="+maHd;
         return getData(sql);
     }
 
