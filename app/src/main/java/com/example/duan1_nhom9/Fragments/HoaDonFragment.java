@@ -28,11 +28,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.duan1_nhom9.Adapter.HoaDonAdapter;
+import com.example.duan1_nhom9.Adapter.HoaDonCtAdapter;
 import com.example.duan1_nhom9.Adapter.KhachHangSpinnerAdapter;
-import com.example.duan1_nhom9.Adapter.NhanVienSpinerAdapter;
 import com.example.duan1_nhom9.DAO.HoaDonDao;
 import com.example.duan1_nhom9.DAO.KhachHangDao;
-import com.example.duan1_nhom9.DAO.NhanVienDao;
 import com.example.duan1_nhom9.HoaDonCtActivity;
 import com.example.duan1_nhom9.Model.HoaDon;
 import com.example.duan1_nhom9.Model.KhachHang;
@@ -68,7 +67,9 @@ public class HoaDonFragment extends Fragment {
     KhachHangDao khachHangDao;
     int maKh;
     int positionKh;
-    SimpleDateFormat sfd = new SimpleDateFormat("yyyy-MM-dd");
+    int soHd;
+
+    SimpleDateFormat sfd = new SimpleDateFormat("yyyy/MM/dd");
 
     public HoaDonFragment() {
         // Required empty public constructor
@@ -128,9 +129,10 @@ public class HoaDonFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), HoaDonCtActivity.class);
-                String sohd = list.get(i).getSoHoaDon();
-                intent.putExtra("soHd",sohd);
+                 soHd = list.get(i).getMaHoaDon();
+                intent.putExtra("soHd",soHd);
                 startActivity(intent);
+
             }
         });
 
@@ -157,7 +159,7 @@ public class HoaDonFragment extends Fragment {
         btnSave = dialog.findViewById(R.id.btnSave_itemAddHd);
         btnHuy = dialog.findViewById(R.id.btnHuy_itemAddHd);
 //
-        sdf = new SimpleDateFormat("yyyy-MM-dd");
+        sdf = new SimpleDateFormat("yyyy/MM/dd");
         tvNgay.setText("Ngày mua: " + sdf.format(new Date()));
         //spinerKh
         khachHangDao = new KhachHangDao(context);
@@ -217,7 +219,7 @@ public class HoaDonFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 item = new HoaDon();
-                item.setMaNv(String.valueOf(tvNv.getText().toString()));
+                item.setMaNv(tvNv.getText().toString());
                 item.setMaKh(maKh);
                 item.setNgayMua(new Date());
                 item.setSoHoaDon(edtSoHd.getText().toString());

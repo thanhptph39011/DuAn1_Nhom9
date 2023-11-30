@@ -28,7 +28,6 @@ public class HoaDonCtDao {
 
     public boolean insertItemHoaDonCt(HoaDonCt hdct) {
         ContentValues values = new ContentValues();
-//        values.put("maHd", hdct.getMaHoaDon());
         values.put("maGiay", hdct.getMaGiay());
         values.put("soLuong",hdct.getSoLuong());
         values.put("tongTien", hdct.getGiaMua());
@@ -37,7 +36,7 @@ public class HoaDonCtDao {
     }
     public boolean insertHoaDonCt(HoaDonCt hdct) {
         ContentValues values = new ContentValues();
-        values.put("maHd", hdct.getSoHoaDon());
+        values.put("maHoaDon", hdct.getSoHoaDon());
         values.put("maGiay", hdct.getMaGiay());
         values.put("soLuong",hdct.getSoLuong());
         values.put("tongTien", hdct.getGiaMua());
@@ -47,7 +46,7 @@ public class HoaDonCtDao {
 
     public boolean UpdateHoaDonCt(HoaDonCt hdct) {
         ContentValues values = new ContentValues();
-        values.put("maHd", hdct.getSoHoaDon());
+        values.put("maHoaDon", hdct.getSoHoaDon());
         values.put("maGiay", hdct.getMaGiay());
         values.put("soLuong",hdct.getSoLuong());
         values.put("tongTien", hdct.getGiaMua());
@@ -66,7 +65,7 @@ public class HoaDonCtDao {
         while (cursor.moveToNext()) {
             HoaDonCt hdct = new HoaDonCt();
             hdct.setMaCthd(cursor.getInt(0));
-            hdct.setSoHoaDon(cursor.getString(1));
+            hdct.setSoHoaDon(cursor.getInt(1));
             hdct.setMaGiay(cursor.getInt(2));
             hdct.setSoLuong(cursor.getInt(3));
             hdct.setGiaMua(cursor.getInt(4));
@@ -79,10 +78,5 @@ public class HoaDonCtDao {
         String sql = "select * from Cthd where maCthd=?";
         List<HoaDonCt> list = getData(sql,id);
         return list.get(0);
-    }
-    public int getIdTien(String id){
-        String sql = "select * from Cthd where maCthd=?";
-        List<HoaDonCt> list = getData(sql,id);
-        return list.get(0).getGiaMua();
     }
 }

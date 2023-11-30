@@ -17,12 +17,14 @@ public class ThongKeDao {
     private SQLiteDatabase db;
     private Context context;
     DbHelper dbHelper;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+
     public ThongKeDao(Context context) {
         this.context = context;
         dbHelper = new DbHelper(context);
         db = dbHelper.getWritableDatabase();
     }
+
     @SuppressLint("Range")
     public List<Top> getTop() {
         String sqlTop = "SELECT Giay.tenGiay, SUM(Cthd.soLuong) AS soLuongBan\n" +
@@ -41,6 +43,7 @@ public class ThongKeDao {
         }
         return list;
     }
+
     // thống kê doanh thu
     @SuppressLint("Range")
     public int getDoanhThu(String tuNgay, String denNgay) {
@@ -56,4 +59,5 @@ public class ThongKeDao {
         }
         return list.get(0);
     }
+
 }

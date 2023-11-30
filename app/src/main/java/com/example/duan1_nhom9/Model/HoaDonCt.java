@@ -2,7 +2,7 @@ package com.example.duan1_nhom9.Model;
 
 public class HoaDonCt {
     private int maCthd;
-    private String soHoaDon;
+    private int soHoaDon;
     private  int maGiay;
     private int giaMua;
     private int soLuong;
@@ -16,7 +16,7 @@ public class HoaDonCt {
         this.soLuong = soLuong;
     }
 
-    public HoaDonCt(String soHoaDon, int maGiay, int giaMua, int soLuong) {
+    public HoaDonCt(int soHoaDon, int maGiay, int giaMua, int soLuong) {
         this.soHoaDon = soHoaDon;
         this.maGiay = maGiay;
         this.giaMua = giaMua;
@@ -31,11 +31,11 @@ public class HoaDonCt {
         this.maCthd = maCthd;
     }
 
-    public String getSoHoaDon() {
+    public int getSoHoaDon() {
         return soHoaDon;
     }
 
-    public void setSoHoaDon(String soHoaDon) {
+    public void setSoHoaDon(int soHoaDon) {
         this.soHoaDon = soHoaDon;
     }
 

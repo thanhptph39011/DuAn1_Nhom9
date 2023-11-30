@@ -34,7 +34,6 @@ public class HoaDonDao {
         values.put("thanhToan",hd.getThanhToan());
         long row = db.insert("HoaDon", null, values);
         return (row > 0);
-
     }
     public boolean updateHoaDon(HoaDon hd) {
         ContentValues values = new ContentValues();
@@ -64,5 +63,13 @@ public class HoaDonDao {
             list.add(hd);
         }
         return list;
+    }
+    public HoaDon getID(String id){
+        String sql ="select * from HoaDon where maHoaDon=?";
+        List<HoaDon> list = getData(sql,id);
+        if (!list.isEmpty()) {
+            return list.get(0);
+        }
+        return null;
     }
 }

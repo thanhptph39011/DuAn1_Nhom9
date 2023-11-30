@@ -25,7 +25,7 @@ public class DoanhThuFragment extends Fragment {
     EditText edtStartDate, edtEndDate;
     Button btnDoanhThu;
     TextView tvDoanhThu;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     int mYear, mMonth, mDay;
 
     public DoanhThuFragment() {
@@ -66,8 +66,8 @@ public class DoanhThuFragment extends Fragment {
         btnDoanhThu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String tuNgay = edtStartDate.getText().toString();
-                String denNgay = edtEndDate.getText().toString();
+                String tuNgay = edtStartDate.getText().toString().trim();
+                String denNgay = edtEndDate.getText().toString().trim();
                 ThongKeDao thongKeDao = new ThongKeDao(getActivity());
                 tvDoanhThu.setText("Doanh Thu: " + thongKeDao.getDoanhThu(tuNgay,denNgay) + "VND");
             }

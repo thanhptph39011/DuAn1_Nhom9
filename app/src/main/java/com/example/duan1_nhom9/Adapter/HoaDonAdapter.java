@@ -33,8 +33,7 @@ public class HoaDonAdapter extends ArrayAdapter {
     TextView tvMaHd,tvSoHD, tvMaNv, tvMaKh, tvThanhToan, tvNgay;
     ImageView btnDelete;
     KhachHangDao khachHangDao;
-    SimpleDateFormat sfd = new SimpleDateFormat("yyyy-MM-dd");
-  SharedPreferences sharedPreferences;
+    SimpleDateFormat sfd = new SimpleDateFormat("yyyy/MM/dd");
 
 
     public HoaDonAdapter(@NonNull Context context, HoaDonFragment fragment, ArrayList<HoaDon> list) {

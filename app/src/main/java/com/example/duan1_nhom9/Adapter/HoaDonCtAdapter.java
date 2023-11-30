@@ -14,7 +14,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.duan1_nhom9.DAO.GiayDao;
 import com.example.duan1_nhom9.DAO.HoaDonCtDao;
+import com.example.duan1_nhom9.Model.Giay;
 import com.example.duan1_nhom9.Model.HoaDonCt;
 import com.example.duan1_nhom9.R;
 
@@ -23,15 +25,19 @@ import java.util.ArrayList;
 public class HoaDonCtAdapter extends ArrayAdapter<HoaDonCt> {
     private Context context;
     private ArrayList<HoaDonCt> list;
-    TextView tvGiay,tvSl,tvThanhTien;
+    TextView tvGiay, tvSl, tvThanhTien;
     ImageView btnDelete;
     HoaDonCtDao hoaDonCtDao;
+    GiayDao giayDao;
+    private OnDeleteSuccessListener onDeleteSuccessListener;
+
     public HoaDonCtAdapter(@NonNull Context context, ArrayList<HoaDonCt> list) {
-        super(context, 0,list);
+        super(context, 0, list);
         this.context = context;
         this.list = list;
         hoaDonCtDao = new HoaDonCtDao(context);
     }
+
     public int tinhTongTien() {
         int tongTien = 0;
         for (int i = 0; i < getCount(); i++) {
@@ -40,10 +46,17 @@ public class HoaDonCtAdapter extends ArrayAdapter<HoaDonCt> {
         }
         return tongTien;
     }
+    public interface OnDeleteSuccessListener {
+        void onDeleteSuccess();
+    }
+
+    public void setOnDeleteSuccessListener(OnDeleteSuccessListener listener) {
+        onDeleteSuccessListener = listener;
+    }
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View view= convertView;
+        View view = convertView;
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.item_hdct_giay, null);
@@ -53,11 +66,13 @@ public class HoaDonCtAdapter extends ArrayAdapter<HoaDonCt> {
             tvGiay = view.findViewById(R.id.tvTenGiay_itemHoaDonCt);
             tvSl = view.findViewById(R.id.tvSLuong_itemHoaDonCt);
             tvThanhTien = view.findViewById(R.id.tvGia_itemHoaDonCt);
-            btnDelete =view.findViewById(R.id.btnDelete_hoaDonCt);
+            btnDelete = view.findViewById(R.id.btnDelete_hoaDonCt);
             //
-            tvGiay.setText(item.getMaGiay()+"");
-            tvSl.setText(item.getSoLuong()+"");
-            tvThanhTien.setText(item.getGiaMua()* item.getSoLuong()+"");
+            giayDao = new GiayDao(context);
+            Giay giay = giayDao.getID(String.valueOf(item.getMaGiay()));
+            tvGiay.setText(giay.getTenGiay() + "");
+            tvSl.setText(item.getSoLuong() + "");
+            tvThanhTien.setText(item.getGiaMua() * item.getSoLuong() + "");
         }
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +89,9 @@ public class HoaDonCtAdapter extends ArrayAdapter<HoaDonCt> {
                             list.addAll(hoaDonCtDao.getAll());
                             notifyDataSetChanged();
                             Toast.makeText(context, "Delete Succ", Toast.LENGTH_SHORT).show();
+                            if (onDeleteSuccessListener != null) {
+                                onDeleteSuccessListener.onDeleteSuccess();
+                            }
                         }
                     }
                 });

@@ -10,7 +10,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String Db_name = "AirStore";
 
     public DbHelper(@Nullable Context context) {
-        super(context, Db_name, null, 4);
+        super(context, Db_name, null, 6);
     }
 
     @Override
@@ -19,17 +19,17 @@ public class DbHelper extends SQLiteOpenHelper {
         String createTableCoSo =
                 "create table CoSo(maCoSo text primary key ,diaChi text not null)";
         sqLiteDatabase.execSQL(createTableCoSo);
-        sqLiteDatabase.execSQL("insert into CoSo(maCoSo,diaChi) values('abc','hà nội'),('abc1','Hải dương')");
+        sqLiteDatabase.execSQL("insert into CoSo(maCoSo,diaChi) values('Air Store 1','hà nội'),('Air Store 2','Hải dương')");
         //bảng loại giày
         String createTableLoaiGiay =
                 "create table LoaiGiay(maLoai integer primary key autoincrement, tenLoai text, loaiHang text)";
         sqLiteDatabase.execSQL(createTableLoaiGiay);
-        sqLiteDatabase.execSQL("insert into LoaiGiay(tenLoai,loaiHang) values('abc','Đẹp'),('abc1','New')");
+        sqLiteDatabase.execSQL("insert into LoaiGiay(tenLoai,loaiHang) values('Giày thể thao','Đẹp'),('Giày công sở','New')");
         //bảng khách hàng
         String createTableKhachHang =
                 "create table KhachHang(maKh integer primary key autoincrement,hoTen text not null, sdt integer not null)";
         sqLiteDatabase.execSQL(createTableKhachHang);
-        sqLiteDatabase.execSQL("insert into KhachHang(hoTen,sdt) values('Thanh',0397590876),('abc',0987927365)");
+        sqLiteDatabase.execSQL("insert into KhachHang(hoTen,sdt) values('Thanh',0397590876),('Anh Thành',0987927365)");
         //bảng giày
         String createTableGiay =
                 "create table Giay(maGiay integer primary key autoincrement ,maLoai integer references LoaiGiay(maLoai),tenGiay text not null, giaMua integer not null, moTa text not null)";
@@ -39,14 +39,14 @@ public class DbHelper extends SQLiteOpenHelper {
         String createTableNhanVien =
                 "create table NhanVien(maNv text primary key,hoTen text not null, matKhau text not null , cccd text not null, sdt integer not null, maCoSo text references CoSo(maCoSo))";
         sqLiteDatabase.execSQL(createTableNhanVien);
-        sqLiteDatabase.execSQL("insert into NhanVien(maNv,hoTen,matKhau,cccd,sdt,maCoSo) values('Nv01','Phạm Thành','12345','020203000252',0398789725,'abc'),('Nv02','Phạm Thành','12345','020203000252',0398789725,'abc')");
+        sqLiteDatabase.execSQL("insert into NhanVien(maNv,hoTen,matKhau,cccd,sdt,maCoSo) values('Nv01','Phạm Thành','12345','020203000252',0398789725,'Air Store 1'),('Nv02','Phạm Thành','12345','020203000252',0398789725,'Air Store 2')");
         //Bảng hoá đơn
         String createTableHoaDon =
                 "create table HoaDon(maHoaDon integer primary key autoincrement,soHoaDon text not null, maKh integer references KhachHang(maKh),maNv text references NhanVien(maNv),ngay date not null, thanhToan integer not null)";
         sqLiteDatabase.execSQL(createTableHoaDon);
-        sqLiteDatabase.execSQL("insert into HoaDon(soHoaDon,maKh,maNv,ngay,thanhToan) values('HD001',1,'Nv01','2023/11/25',0)");
+        sqLiteDatabase.execSQL("insert into HoaDon(soHoaDon,maKh,maNv,ngay,thanhToan) values('HD001',1,'Nv01','2023/11/29',0)");
         //Bảng CtHoaDon
-        String createTableCtHd = "create table Cthd(maCthd integer primary key autoincrement, maHoaDon integer references HoaDon(soHoaDon), maGiay integer references Giay(maGiay),soLuong integer not null, tongTien integer not null)";
+        String createTableCtHd = "create table Cthd(maCthd integer primary key autoincrement, maHoaDon integer references HoaDon(maHoaDon), maGiay integer references Giay(maGiay),soLuong integer not null , tongTien integer not null)";
         sqLiteDatabase.execSQL(createTableCtHd);
     }
 
