@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.duan1_nhom9.DataBase.DbHelper;
 import com.example.duan1_nhom9.Model.Giay;
 import com.example.duan1_nhom9.Model.Top;
+import com.example.duan1_nhom9.Model.TopNv;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class ThongKeDao {
     // thống kê doanh thu
     @SuppressLint("Range")
     public int getDoanhThu(String tuNgay, String denNgay) {
-        String sqlDoanhThu = "SELECT SUM(tongTien) as doanhThu FROM Cthd INNER JOIN HoaDon ON Cthd.maHoaDon = HoaDon.maHoaDon WHERE HoaDon.ngay BETWEEN ? AND ?";
+        String sqlDoanhThu = "SELECT SUM(tongTien * soLuong) as doanhThu FROM Cthd INNER JOIN HoaDon ON Cthd.maHoaDon = HoaDon.maHoaDon WHERE HoaDon.ngay BETWEEN ? AND ?";
         List<Integer> list = new ArrayList<Integer>();
         Cursor cursor = db.rawQuery(sqlDoanhThu, new String[]{tuNgay, denNgay});
         while (cursor.moveToNext()) {
@@ -60,4 +61,25 @@ public class ThongKeDao {
         return list.get(0);
     }
 
+
+    @SuppressLint("Range")
+    public List<TopNv> getTop10NhanVienDoanhThu() {
+
+        String query = "SELECT NhanVien.maNv, SUM(Cthd.tongTien * Cthd.soLuong) AS tienBan " +
+                "FROM NhanVien " +
+                "INNER JOIN HoaDon ON NhanVien.maNv = HoaDon.maNv " +
+                "INNER JOIN Cthd ON HoaDon.maHoaDon = Cthd.maHoaDon " +
+                "GROUP BY NhanVien.maNv " +
+                "ORDER BY tienBan DESC " +
+                "LIMIT 10";
+        List<TopNv> list = new ArrayList<TopNv>();
+        Cursor cursor = db.rawQuery(query, null);
+        while (cursor.moveToNext()) {
+            TopNv top = new TopNv();
+            top.setMaNv(cursor.getString(cursor.getColumnIndex("maNv")));
+            top.setTongTien(Integer.parseInt(cursor.getString(cursor.getColumnIndex("tienBan"))));
+            list.add(top);
+        }
+        return list;
+    }
 }

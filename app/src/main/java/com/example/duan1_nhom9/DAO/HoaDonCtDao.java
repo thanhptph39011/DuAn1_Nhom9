@@ -79,4 +79,5 @@ public class HoaDonCtDao {
         List<HoaDonCt> list = getData(sql,id);
         return list.get(0);
     }
+
 }

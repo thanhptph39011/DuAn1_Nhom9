@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,9 +31,10 @@ public class HoaDonAdapter extends ArrayAdapter {
     private Context context;
     private ArrayList<HoaDon> list;
     HoaDonFragment fragment;
-    TextView tvMaHd,tvSoHD, tvMaNv, tvMaKh, tvThanhToan, tvNgay;
+    TextView tvMaHd, tvSoHD, tvMaNv, tvMaKh, tvThanhToan, tvNgay;
     ImageView btnDelete;
     KhachHangDao khachHangDao;
+    boolean isAdmin = false;
     SimpleDateFormat sfd = new SimpleDateFormat("yyyy/MM/dd");
 
 
@@ -55,7 +57,7 @@ public class HoaDonAdapter extends ArrayAdapter {
         final HoaDon item = list.get(position);
         if (item != null) {
             tvMaHd = v.findViewById(R.id.tvHd_itemHoaDon);
-            tvSoHD =v.findViewById(R.id.tvSoHoaDon_itemHoaDon);
+            tvSoHD = v.findViewById(R.id.tvSoHoaDon_itemHoaDon);
             tvMaNv = v.findViewById(R.id.tvMaNv_itemHoaDon);
             tvMaKh = v.findViewById(R.id.tvTenKh_itemHoaDon);
             tvThanhToan = v.findViewById(R.id.tvThanhToan_itemHoaDon);
@@ -68,7 +70,7 @@ public class HoaDonAdapter extends ArrayAdapter {
             //
             khachHangDao = new KhachHangDao(context);
             KhachHang kh = khachHangDao.getID(String.valueOf(item.getMaKh()));
-            if (item != null && kh!=null) {
+            if (item != null && kh != null) {
                 String tenkh = kh.getTenKh();
                 tvMaKh.setText(tenkh);
             } else {
@@ -87,7 +89,19 @@ public class HoaDonAdapter extends ArrayAdapter {
             btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    fragment.xoa(String.valueOf(item.getMaHoaDon()));
+
+// Lấy vai trò người dùng từ shared preferences hoặc cơ chế xác thực
+                    SharedPreferences preferences = context.getSharedPreferences("USER_FILE", Context.MODE_PRIVATE);
+                    String userRole = preferences.getString("userName", "");
+
+// Kiểm tra xem vai trò người dùng có phải là admin không
+                    if (userRole.equals("admin")) {
+                        isAdmin = true;
+                        fragment.xoa(String.valueOf(item.getMaHoaDon()));
+                    } else {
+                        Toast.makeText(context, "Bạn không có quyền xoá hoá đơn", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             });
         }

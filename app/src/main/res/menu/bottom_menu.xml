@@ -5,6 +5,10 @@
     android:icon="@drawable/baseline_vertical_align_top_24"
     android:title="Top"
     />
+    <item android:id="@+id/topNv"
+        android:icon="@drawable/baseline_waterfall_chart_24"
+        android:title="Top Nv"
+        />
     <item android:id="@+id/coSo"
         android:title="Cơ sở"
         android:icon="@drawable/baseline_store_24"

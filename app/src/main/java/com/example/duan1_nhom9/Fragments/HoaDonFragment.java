@@ -158,9 +158,9 @@ public class HoaDonFragment extends Fragment {
         rdoChuyenKhoan = dialog.findViewById(R.id.radioChuyenKhoan);
         btnSave = dialog.findViewById(R.id.btnSave_itemAddHd);
         btnHuy = dialog.findViewById(R.id.btnHuy_itemAddHd);
-//
-        sdf = new SimpleDateFormat("yyyy/MM/dd");
-        tvNgay.setText("Ngày mua: " + sdf.format(new Date()));
+        //
+        sfd = new SimpleDateFormat("yyyy/MM/dd");
+        tvNgay.setText("Ngày mua: " + sfd.format(new Date()));
         //spinerKh
         khachHangDao = new KhachHangDao(context);
         listKh = new ArrayList<KhachHang>();
@@ -195,13 +195,12 @@ public class HoaDonFragment extends Fragment {
                 spKhachHang.setSelection(positionKh);
             }
 
-
             edtSoHd.setText(item.getSoHoaDon());
             tvNgay.setText(sfd.format(item.getNgayMua()));
             if (item.getThanhToan()==1) {
                 rdoTienmat.setChecked(true);
             } else {
-             rdoChuyenKhoan.setChecked(false);
+                rdoChuyenKhoan.setChecked(false);
             }
         }
         btnHuy.setOnClickListener(new View.OnClickListener() {

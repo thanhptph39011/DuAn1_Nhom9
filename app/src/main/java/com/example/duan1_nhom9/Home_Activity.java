@@ -31,6 +31,7 @@ import com.example.duan1_nhom9.Fragments.KhachHangFragment;
 import com.example.duan1_nhom9.Fragments.LoaiGiayFragment;
 import com.example.duan1_nhom9.Fragments.NhanVienFragment;
 import com.example.duan1_nhom9.Fragments.TopFragment;
+import com.example.duan1_nhom9.Fragments.TopNvFragment;
 import com.example.duan1_nhom9.Model.NhanVien;
 import com.example.duan1_nhom9.Model.Photo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -83,6 +84,7 @@ public class Home_Activity extends AppCompatActivity {
             String userName = nv.getHoTen();
             tvuser.setText("Wellcome: " + userName);
             nav.getMenu().findItem(R.id.DoiMk).setVisible(true);
+            bottomNavigationView.getMenu().findItem(R.id.topNv).setVisible(false);
             Toast.makeText(this, "Wellcome nhân viên", Toast.LENGTH_SHORT).show();
         }
         HoaDonFragment fragment = new HoaDonFragment();
@@ -92,8 +94,6 @@ public class Home_Activity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.QuanLyHoaDon) {
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("maNv",user);
                     HoaDonFragment hoaDonFragment = new HoaDonFragment();
                     replaceFrg(hoaDonFragment);
                 } else if (item.getItemId() == R.id.QuanLyLoaiGiay) {
@@ -105,9 +105,6 @@ public class Home_Activity extends AppCompatActivity {
                 } else if (item.getItemId() == R.id.QuanLyKhachHang) {
                     KhachHangFragment khachHangFragment = new KhachHangFragment();
                     replaceFrg(khachHangFragment);
-//                } else if (item.getItemId() == R.id.QuanLyPhuKien) {
-//                    PhuKienFragment fragment = new PhuKienFragment();
-//                    replaceFrg(fragment);
                 } else if (item.getItemId() == R.id.DoiMk) {
                     ChangePassFragment changePassFragment = new ChangePassFragment();
                     replaceFrg(changePassFragment);
@@ -150,6 +147,9 @@ public class Home_Activity extends AppCompatActivity {
                 } else if (item.getItemId() == R.id.topgiayMuaNhieuNhat) {
                     TopFragment fragment = new TopFragment();
                     replaceFrg(fragment);
+                } else if (item.getItemId() == R.id.topNv) {
+                    TopNvFragment fragment1 = new TopNvFragment();
+                    replaceFrg(fragment1);
                 } else {
                     DoanhThuFragment doanhThuFragment = new DoanhThuFragment();
                     replaceFrg(doanhThuFragment);

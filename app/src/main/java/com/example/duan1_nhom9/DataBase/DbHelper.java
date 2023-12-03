@@ -42,9 +42,9 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("insert into NhanVien(maNv,hoTen,matKhau,cccd,sdt,maCoSo) values('Nv01','Phạm Thành','12345','020203000252',0398789725,'Air Store 1'),('Nv02','Phạm Thành','12345','020203000252',0398789725,'Air Store 2')");
         //Bảng hoá đơn
         String createTableHoaDon =
-                "create table HoaDon(maHoaDon integer primary key autoincrement,soHoaDon text not null, maKh integer references KhachHang(maKh),maNv text references NhanVien(maNv),ngay date not null, thanhToan integer not null)";
+                "create table HoaDon(maHoaDon integer primary key autoincrement,soHoaDon text not null, maKh integer references KhachHang(maKh),maNv text references NhanVien(maNv),ngay DATE not null, thanhToan integer not null)";
         sqLiteDatabase.execSQL(createTableHoaDon);
-        sqLiteDatabase.execSQL("insert into HoaDon(soHoaDon,maKh,maNv,ngay,thanhToan) values('HD001',1,'Nv01','2023/11/29',0)");
+//        sqLiteDatabase.execSQL("insert into HoaDon(soHoaDon,maKh,maNv,ngay,thanhToan) values('HD001',1,'Nv01','2023/11/29',0)");
         //Bảng CtHoaDon
         String createTableCtHd = "create table Cthd(maCthd integer primary key autoincrement, maHoaDon integer references HoaDon(maHoaDon), maGiay integer references Giay(maGiay),soLuong integer not null , tongTien integer not null)";
         sqLiteDatabase.execSQL(createTableCtHd);

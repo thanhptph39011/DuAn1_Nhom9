@@ -18,16 +18,16 @@ import com.example.duan1_nhom9.R;
 
 import java.util.ArrayList;
 
-public class TopAdapter extends ArrayAdapter<Top> {
+public class TopNvAdapter extends ArrayAdapter<TopNv> {
     private Context context;
-    TopFragment topFragment;
-    ArrayList<Top> list;
-    TextView tvGiay, tvSoLuong;
+   TopNvFragment topFragment;
+    ArrayList<TopNv> list;
+    TextView tvTenNv, tvDoanhThu;
 
-    public TopAdapter(@NonNull Context context, TopFragment topFragment, ArrayList<Top> list) {
+    public TopNvAdapter(@NonNull Context context, TopNvFragment topNvFragment, ArrayList<TopNv> list ) {
         super(context, 0, list);
         this.context = context;
-        this.topFragment = topFragment;
+        this.topFragment = topNvFragment;
         this.list = list;
     }
     @NonNull
@@ -36,15 +36,15 @@ public class TopAdapter extends ArrayAdapter<Top> {
         View v=convertView;
         if (v == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.item_top, null);
+            v = inflater.inflate(R.layout.item_topnv, null);
         }
-        final Top item  = list.get(position);
+        final TopNv item  = list.get(position);
         if(item!=null){
-            tvGiay=v.findViewById(R.id.tenGiay_itemTop);
-            tvSoLuong=v.findViewById(R.id.SoLuong_itemTop);
+            tvTenNv=v.findViewById(R.id.tenNv_itemTopNv);
+            tvDoanhThu=v.findViewById(R.id.doanhThu_itemTopNv);
             //
-            tvGiay.setText(item.getMaGiay());
-            tvSoLuong.setText(item.getSoLuong()+"");
+            tvTenNv.setText(item.getMaNv());
+            tvDoanhThu.setText(item.getTongTien()+"  $");
         }
         return v;
     }

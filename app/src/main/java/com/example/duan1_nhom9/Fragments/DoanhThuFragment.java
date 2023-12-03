@@ -13,10 +13,13 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.duan1_nhom9.DAO.HoaDonCtDao;
 import com.example.duan1_nhom9.DAO.ThongKeDao;
+import com.example.duan1_nhom9.Model.HoaDonCt;
 import com.example.duan1_nhom9.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -27,6 +30,7 @@ public class DoanhThuFragment extends Fragment {
     TextView tvDoanhThu;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     int mYear, mMonth, mDay;
+    HoaDonCtDao hoaDonCtDao;
 
     public DoanhThuFragment() {
         // Required empty public constructor
@@ -69,7 +73,7 @@ public class DoanhThuFragment extends Fragment {
                 String tuNgay = edtStartDate.getText().toString().trim();
                 String denNgay = edtEndDate.getText().toString().trim();
                 ThongKeDao thongKeDao = new ThongKeDao(getActivity());
-                tvDoanhThu.setText("Doanh Thu: " + thongKeDao.getDoanhThu(tuNgay,denNgay) + "VND");
+                tvDoanhThu.setText("Doanh Thu: " + thongKeDao.getDoanhThu(tuNgay,denNgay) + "$");
             }
         });
         return v;

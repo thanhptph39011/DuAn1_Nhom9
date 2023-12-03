@@ -2,11 +2,13 @@ package com.example.duan1_nhom9;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -16,6 +18,7 @@ import com.example.duan1_nhom9.Adapter.GiaySpinerAdapter;
 import com.example.duan1_nhom9.Adapter.HoaDonCtAdapter;
 import com.example.duan1_nhom9.DAO.GiayDao;
 import com.example.duan1_nhom9.DAO.HoaDonCtDao;
+import com.example.duan1_nhom9.Fragments.HoaDonFragment;
 import com.example.duan1_nhom9.Model.Giay;
 import com.example.duan1_nhom9.Model.HoaDonCt;
 
@@ -26,6 +29,7 @@ public class HoaDonCtActivity extends AppCompatActivity {
     EditText edtsoHd, edtSoLuong;
     Spinner spnGiay;
     TextView tvTongTien;
+    ImageView imgBack;
     Button btnSave;
     GiaySpinerAdapter giaySpinerAdapter;
     ArrayList<Giay> listGiay;
@@ -49,6 +53,7 @@ public class HoaDonCtActivity extends AppCompatActivity {
         edtSoLuong = findViewById(R.id.edtSoLuong_hdct);
         btnSave = findViewById(R.id.btnSave_hdct);
         spnGiay = findViewById(R.id.spGiay_itemHdCt);
+        imgBack = findViewById(R.id.imgBack);
         //
         hoaDonCtDao = new HoaDonCtDao(this);
         //
@@ -72,6 +77,13 @@ public class HoaDonCtActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HoaDonCtActivity.this, HoaDonFragment.class);
+                startActivity(intent);
             }
         });
         btnSave.setOnClickListener(new View.OnClickListener() {
