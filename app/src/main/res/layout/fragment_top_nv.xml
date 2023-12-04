@@ -6,7 +6,11 @@
     android:background="@color/bar"
     android:orientation="vertical"
     tools:context=".Fragments.TopNvFragment">
-
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_marginTop="10dp"
+    android:src="@drawable/topnv"/>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

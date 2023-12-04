@@ -59,22 +59,7 @@ public class HoaDonDao {
         return (row > 0);
     }
 
-//    private List<HoaDon> getData(String sql, String... selectionArgs) {
-//        List<HoaDon> list = new ArrayList<HoaDon>();
-//        Cursor cursor = db.rawQuery(sql, selectionArgs);
-//        while (cursor.moveToNext()) {
-//            HoaDon hd = new HoaDon();
-//
-//            hd.setMaHoaDon(cursor.getInt(0));
-//            hd.setSoHoaDon(cursor.getString(1));
-//            hd.setMaKh(cursor.getInt(2));
-//            hd.setMaNv(cursor.getString(3));
-//            hd.setNgayMua(new Date(cursor.getColumnIndex("ngay")));
-//            hd.setThanhToan(cursor.getInt(5));
-//            list.add(hd);
-//        }
-//        return list;
-//    }
+
     @SuppressLint("Range")
     private List<HoaDon> getData(String sql, String... selectionArgs) {
         List<HoaDon> list = new ArrayList<>();

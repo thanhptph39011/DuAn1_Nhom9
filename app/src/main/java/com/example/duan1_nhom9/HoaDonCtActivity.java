@@ -59,6 +59,7 @@ public class HoaDonCtActivity extends AppCompatActivity {
         //
         soHd = getIntent().getIntExtra("soHd", 0);
         edtsoHd.setText(String.valueOf(soHd));
+        capNhapLv();
         //Sp giày
         giayDao = new GiayDao(this);
         listGiay = new ArrayList<>();
@@ -71,7 +72,6 @@ public class HoaDonCtActivity extends AppCompatActivity {
                 maGiay = listGiay.get(i).getMaGiay();
                 giatien = listGiay.get(i).getGiaMua();
                 tenGiay = listGiay.get(i).getTenGiay();
-                Toast.makeText(HoaDonCtActivity.this, "Chọn:" + listGiay.get(i).getTenGiay(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -82,8 +82,7 @@ public class HoaDonCtActivity extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HoaDonCtActivity.this, HoaDonFragment.class);
-                startActivity(intent);
+                finish();
             }
         });
         btnSave.setOnClickListener(new View.OnClickListener() {
@@ -110,16 +109,10 @@ public class HoaDonCtActivity extends AppCompatActivity {
                         Toast.makeText(HoaDonCtActivity.this, "Thêm fail", Toast.LENGTH_SHORT).show();
                     }
                 }
-               capNhapLv();
+                capNhapLv();
             }
         });
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        capNhapLv();
     }
 
     public void capNhapLv() {
@@ -129,11 +122,11 @@ public class HoaDonCtActivity extends AppCompatActivity {
             @Override
             public void onDeleteSuccess() {
                 int tongTien = adapter.tinhTongTien();
-                tvTongTien.setText(tongTien + " VND");
+                tvTongTien.setText(tongTien + " $");
             }
         });
         lvSp.setAdapter(adapter);
         int tongTien = adapter.tinhTongTien();
-        tvTongTien.setText(tongTien + " VND");
+        tvTongTien.setText(tongTien + " $");
     }
 }
