@@ -56,16 +56,38 @@
             android:inputType="none"
             android:paddingLeft="20dp" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/btnDoanhThu"
-        android:layout_width="150dp"
+    <Spinner
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/khung"
-        android:text="Doanh thu"
-        android:textColor="@color/white" />
+        android:layout_margin="10dp"
+        android:id="@+id/spinerCoSo"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnDoanhThuAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/white"
+            android:background="@drawable/khung"
+            android:text="Tổng doanh thu" />
+        <Button
+            android:id="@+id/btnDoanhThu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/khung"
+            android:text="Doanh thu cơ sở"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/tvDoanhThu"

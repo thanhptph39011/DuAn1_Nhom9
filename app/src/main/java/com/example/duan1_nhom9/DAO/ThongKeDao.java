@@ -82,4 +82,25 @@ public class ThongKeDao {
         }
         return list;
     }
+    @SuppressLint("Range")
+    public int getDoanhThuTheoCoSo(String tuNgay, String denNgay, String maCoSo) {
+        String sqlDoanhThu = "SELECT SUM(Cthd.tongTien* Cthd.soLuong) AS doanhThu " +
+                "FROM Cthd " +
+                "JOIN HoaDon ON Cthd.maHoaDon = HoaDon.maHoaDon " +
+                "JOIN NhanVien ON HoaDon.maNv = NhanVien.maNv " +
+                "JOIN CoSo ON NhanVien.maCoSo = CoSo.maCoSo " +
+                "WHERE HoaDon.ngay BETWEEN ? AND ? " +
+                "AND CoSo.maCoSo = ?";
+        List<Integer> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery(sqlDoanhThu, new String[]{tuNgay, denNgay, maCoSo});
+        while (cursor.moveToNext()) {
+            try {
+                list.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("doanhThu"))));
+            } catch (Exception e) {
+                list.add(0);
+            }
+        }
+        return list.get(0);
+    }
+
 }

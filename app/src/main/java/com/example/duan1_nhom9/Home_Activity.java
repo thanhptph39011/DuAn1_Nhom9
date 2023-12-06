@@ -85,6 +85,8 @@ public class Home_Activity extends AppCompatActivity {
             tvuser.setText("Wellcome: " + userName);
             nav.getMenu().findItem(R.id.DoiMk).setVisible(true);
             bottomNavigationView.getMenu().findItem(R.id.topNv).setVisible(false);
+            bottomNavigationView.getMenu().findItem(R.id.topgiayMuaNhieuNhat).setVisible(false);
+            bottomNavigationView.getMenu().findItem(R.id.DoanhThu).setVisible(false);
             Toast.makeText(this, "Wellcome nhân viên", Toast.LENGTH_SHORT).show();
         }
         HoaDonFragment fragment = new HoaDonFragment();
