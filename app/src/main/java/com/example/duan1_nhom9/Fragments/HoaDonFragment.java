@@ -61,20 +61,20 @@ public class HoaDonFragment extends Fragment {
     RadioGroup radioGroup;
     RadioButton rdoTienmat, rdoChuyenKhoan;
     ImageView btnSave, btnHuy;
-    String tenNv="";
+    String tenNv = "";
     KhachHangSpinnerAdapter khachHangSpinnerAdapter;
     ArrayList<KhachHang> listKh;
     KhachHangDao khachHangDao;
     int maKh;
     int positionKh;
     int soHd;
+    private String isadmin = "";
 
     SimpleDateFormat sfd = new SimpleDateFormat("yyyy/MM/dd");
 
     public HoaDonFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,6 +88,12 @@ public class HoaDonFragment extends Fragment {
         templist = (ArrayList<HoaDon>) hoaDonDao.getAll();
         adapter = new HoaDonAdapter(getActivity(), this, list);
         lvHoaDon.setAdapter(adapter);
+        //
+        // Lấy loại người dùng từ shared preference hoặc biến toàn cục
+        SharedPreferences preferences = getActivity().getSharedPreferences("USER_FILE", Context.MODE_PRIVATE);
+        isadmin = preferences.getString("userName", "");
+
+
         edtTimKiem = v.findViewById(R.id.edtTimKiemHoaDon);
         edtTimKiem.addTextChangedListener(new TextWatcher() {
             @Override
@@ -111,27 +117,33 @@ public class HoaDonFragment extends Fragment {
 
             }
         });
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openDiaLog(getActivity(), 0);
             }
         });
-        lvHoaDon.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                item = list.get(i);
-                openDiaLog(getActivity(), 1); //update
-                return false;
-            }
-        });
+//        lvHoaDon.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                item = list.get(i);
+//                openDiaLog(getActivity(), 1); //update
+//                return false;
+//            }
+//        });
         lvHoaDon.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), HoaDonCtActivity.class);
-                 soHd = list.get(i).getMaHoaDon();
-                intent.putExtra("soHd",soHd);
-                startActivity(intent);
+                if (isOwnerOfHoaDon(i)) {
+                    Intent intent = new Intent(getActivity(), HoaDonCtActivity.class);
+                    soHd = list.get(i).getMaHoaDon();
+                    intent.putExtra("soHd", soHd);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getActivity(), "Bạn k có quyền truy cập vào hoá đơn này", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });
@@ -197,11 +209,12 @@ public class HoaDonFragment extends Fragment {
 
             edtSoHd.setText(item.getSoHoaDon());
             tvNgay.setText(sfd.format(item.getNgayMua()));
-            if (item.getThanhToan()==1) {
+            if (item.getThanhToan() == 1) {
                 rdoTienmat.setChecked(true);
             } else {
                 rdoChuyenKhoan.setChecked(false);
             }
+
         }
         btnHuy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,8 +224,8 @@ public class HoaDonFragment extends Fragment {
         });
         //
 
-        SharedPreferences preferences = context.getSharedPreferences("USER_FILE",Context.MODE_PRIVATE);
-        tenNv = preferences.getString("userName","");
+        SharedPreferences preferences = context.getSharedPreferences("USER_FILE", Context.MODE_PRIVATE);
+        tenNv = preferences.getString("userName", "");
         tvNv.setText(tenNv);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -251,6 +264,7 @@ public class HoaDonFragment extends Fragment {
         });
         dialog.show();
     }
+
     public void xoa(final String id) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Cảnh báo");
@@ -273,7 +287,23 @@ public class HoaDonFragment extends Fragment {
             }
         });
         AlertDialog alert = builder.create();
-        builder.show();
+        alert.show();
     }
 
+    private boolean isOwnerOfHoaDon(int position) {
+        // Lấy thông tin người dùng hiện tại
+        SharedPreferences preferences = getActivity().getSharedPreferences("USER_FILE", Context.MODE_PRIVATE);
+        String currentUserUsername = preferences.getString("userName", ""); // Giả sử bạn lưu tên người dùng trong SharedPreferences
+
+        // Lấy thông tin hóa đơn tại vị trí đã cho
+        HoaDon hoaDon = list.get(position);
+
+        // So sánh username của người tạo hóa đơn với username của người dùng hiện tại
+        return isCurrentAdminFixed(currentUserUsername) || hoaDon.getMaNv().equals(currentUserUsername);
+    }
+
+    private boolean isCurrentAdminFixed(String username) {
+        // Kiểm tra xem username có phải là tài khoản admin cố định hay không
+        return username.equals("admin");
+    }
 }

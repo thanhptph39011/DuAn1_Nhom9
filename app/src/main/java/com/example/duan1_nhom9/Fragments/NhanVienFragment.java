@@ -174,7 +174,18 @@ public class NhanVienFragment extends Fragment {
                     edtCccd.requestFocus();
                     return;
                 }
-
+                // Kiểm tra độ dài CCCD
+                if (cccd.length() != 12) {
+                    Toast.makeText(getActivity(), "CCCD phải có 12 ký tự", Toast.LENGTH_SHORT).show();
+                    edtCccd.requestFocus();
+                    return;
+                }
+                // Kiểm tra CCCD có chứa toàn ký tự số hay không
+                if (!cccd.matches("\\d+")) {
+                    Toast.makeText(getActivity(), "CCCD chỉ được chứa ký tự số", Toast.LENGTH_SHORT).show();
+                    edtCccd.requestFocus();
+                    return;
+                }
                 if (sdt.equals("")) {
                     Toast.makeText(getActivity(), "Vui lòng nhập sđt", Toast.LENGTH_SHORT).show();
                     edtSdt.requestFocus();

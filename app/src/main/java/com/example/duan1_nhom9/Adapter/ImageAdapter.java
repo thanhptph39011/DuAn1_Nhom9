@@ -18,7 +18,6 @@ import java.util.List;
 public class ImageAdapter extends PagerAdapter {
     private Context context;
     private List<Photo> listPhoto;
-    private int imgCount;
 
     public ImageAdapter(Context context, List<Photo> listPhoto) {
         this.context = context;

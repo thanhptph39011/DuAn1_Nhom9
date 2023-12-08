@@ -83,6 +83,7 @@
             android:layout_marginLeft="10dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/khung"
             android:text="Doanh thu cơ sở"
             android:textColor="@color/white" />

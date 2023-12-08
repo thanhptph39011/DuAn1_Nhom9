@@ -76,6 +76,7 @@ public class HoaDonCtAdapter extends ArrayAdapter<HoaDonCt> {
             tvSl.setText(item.getSoLuong() + "");
             tvThanhTien.setText(item.getGiaMua() * item.getSoLuong() + "");
         }
+
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,4 +110,5 @@ public class HoaDonCtAdapter extends ArrayAdapter<HoaDonCt> {
         });
         return view;
     }
+
 }
