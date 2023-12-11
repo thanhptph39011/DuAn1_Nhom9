@@ -77,12 +77,13 @@ public class NhanVienDao {
             return null;
         }
     }
-    public int CheckLogin(String id,String password){
-        String sql = "select * from NhanVien where maNv=? and matKhau=?";
-        List<NhanVien> list=getData(sql,id,password);
-        if (list.size()==0){
-            return -1;
-        }return 1;
+    public NhanVien getUserName(String userName){
+        String sql ="select * from NhanVien where maNv=?";
+        List<NhanVien> list = getData(sql,userName);
+        if(!list.isEmpty()){
+            return list.get(0);
+        }else{
+            return null;
+        }
     }
-
 }

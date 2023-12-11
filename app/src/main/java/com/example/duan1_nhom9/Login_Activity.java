@@ -46,15 +46,31 @@ public class Login_Activity extends AppCompatActivity {
                     Toast.makeText(Login_Activity.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (nhanVienDao.CheckLogin(userName, passWord) > 0 || (userName.equals("admin") && passWord.equals("admin"))) {
+                boolean checkLogin = false;
+                NhanVien nv = nhanVienDao.getUserName(userName);
+                if (nv != null) {
+                    if (passWord.equals(nv.getMatKhau())) {
+                        checkLogin = true;
+                    } else {
+                        Toast.makeText(Login_Activity.this, "Sai PassWord", Toast.LENGTH_SHORT).show();
+                        edtPassWord.requestFocus();
+                        return;
+                    }
+                } else {
+                    if (userName.equals("admin") && passWord.equals("admin")) {
+                        checkLogin = true;
+                    } else {
+                        Toast.makeText(Login_Activity.this, "Sai user name hoặc pass", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+                if (checkLogin = true) {
                     Toast.makeText(Login_Activity.this, "Đăng nhập Succ", Toast.LENGTH_SHORT).show();
                     rememberUser(userName, passWord, chkLuuMk.isChecked());
                     Intent intent = new Intent(Login_Activity.this, Home_Activity.class);
                     intent.putExtra("user", userName);
                     startActivity(intent);
                     finish();
-                } else {
-                    Toast.makeText(Login_Activity.this, "Đăng nhập thất bại. Vui lòng kiểm tra lại", Toast.LENGTH_SHORT).show();
                 }
             }
         });
